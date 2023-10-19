@@ -38,7 +38,7 @@ export function LoginUser() {
         LOGIN PROJECT13
       </h1>
       <form
-        className="w-1/3 bg-white shadow-[2px_2px_10px_rgba(0,0,0,0.5)] rounded-lg p-3"
+        className="w-10/12 sm:w-1/3 bg-white shadow-[2px_2px_10px_rgba(0,0,0,0.5)] rounded-lg p-3"
         onSubmit={postData}
       >
         <div>
