@@ -5,7 +5,7 @@ import { cleanLogin } from '../../redux/action/user';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
-export function Homepage() {
+export function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
@@ -31,7 +31,7 @@ export function Homepage() {
 
   return (
     <section>
-      <div className="w-10/12 mx-auto my-10">
+      <div className="container w-10/12 mx-auto my-10">
         <h1 className='p-0 m-0'>Hello, <span className='font-medium'>{localStorage.getItem('name_')}</span>!</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 mt-5">
           <div className="col-span-1 p-0 md:pe-5">

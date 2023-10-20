@@ -28,12 +28,12 @@ export function LoginUser() {
         dispatch(cleanLogin())
       );
     } else if (data) {
-      Swal.fire(`${data?.message}`, '', 'success').then(()=>navigate('/home'))
+      Swal.fire(`${data?.message}`, '', 'success').then(()=>navigate('/dashboard'))
     }
   }, [data, isError, errorMessage]);
 
   return (
-    <section className="h-screen flex flex-col justify-center items-center">
+    <section className="h-screen flex flex-col justify-center items-center container mx-auto">
       <h1 className="text-2xl mb-4 font-bold text-[#808080]">
         LOGIN PROJECT13
       </h1>
