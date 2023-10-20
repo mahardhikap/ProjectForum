@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { getUser } from '../../redux/action/user';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { cleanLogin } from '../../redux/action/user';
+import { getUserPost } from '../../redux/action/menu';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
 export function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
+  const [sortby, setSortby] = useState('created_at')
+  const [sort, setSort] = useState('ASC')
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(5)
+  const {data:getPost} = useSelector(state => state.getUserPost)
 
   const handleLogOut = () => {
     Swal.fire({
@@ -28,6 +34,10 @@ export function Dashboard() {
       }
     });
   };
+
+  useEffect(()=>{
+    dispatch(getUserPost(sortby, sort, page, limit))
+  },[])
 
   return (
     <section>
