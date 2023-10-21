@@ -121,9 +121,6 @@ export function AddArticle() {
               <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white">
                 Edit Profile
               </div>
-              <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white">
-                Change Password
-              </div>
               <div
                 className="font-medium my-2 bg-red-500 rounded-md px-2 py-2 my-2 text-white"
                 onClick={() => handleLogOut()}
