@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ck-editor__editable_inline:not(.ck-comment__input *) {
+    height: 500px;
+    overflow-y: auto;
+}

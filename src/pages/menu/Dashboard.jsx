@@ -55,6 +55,7 @@ export function Dashboard() {
   const handleDeletePost = (id) => {
     Swal.fire({
       title: 'Do you want to delete this post?',
+      icon: 'question',
       showDenyButton: true,
       confirmButtonText: 'Cancel',
       denyButtonText: `Delete`,
@@ -184,8 +185,8 @@ export function Dashboard() {
                     <h1 className="font-bold border-b-2 py-1 text-center mb-3">
                       {item.title}
                     </h1>
-                    <p>
-                      {item.article.slice(0, 200)}{' '}
+                    <div>
+                      <div id="article-content" dangerouslySetInnerHTML={{ __html: item.article.slice(0, 200) }}></div>
                       {item.article.length > 200 ? (
                         <span className="font-bold text-blue-300">
                           ...READ MORE
@@ -193,7 +194,7 @@ export function Dashboard() {
                       ) : (
                         ''
                       )}
-                    </p>
+                    </div>
                     <p>{item.username}</p>
                     <p>{item.created_at}</p>
                   </Link>

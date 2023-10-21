@@ -36,16 +36,23 @@ export function DetailArticle() {
       <div className="flex justify-center items-center mt-10">
         <img
           src={getArticle?.pic}
-          className="w-[400px] h-[250px] object-cover	"
+          className="w-[400px] h-[250px] object-cover rounded-lg"
           alt="Article Cover"
         />
       </div>
       <div className="mt-5 mb-10 text-center">
         {getArticle?.created_at}. Author: {getArticle?.username}
       </div>
-      <p className="text-justify">
-        {isPasswordMatch || getArticle?.post_pass === 'undefined' ? getArticle?.article : 'Password does not match.'}
-      </p>
+      <div>
+        {isPasswordMatch || getArticle?.post_pass === 'undefined' ? (
+          <div
+            id="article-content"
+            dangerouslySetInnerHTML={{ __html: getArticle?.article }}
+          ></div>
+        ) : (
+          'Password does not match.'
+        )}
+      </div>
     </section>
   );
 }

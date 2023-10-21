@@ -4,11 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { addArticle, cleanAddArticle } from '../../redux/action/menu';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export function AddArticle() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
+  const [editorContent, setEditorContent] = useState('');
   const [inputArticle, setInputArticle] = useState({
     title:'',
     article:'',
@@ -21,7 +24,7 @@ export function AddArticle() {
     e.preventDefault();
     let bodyFormData = new FormData();
     bodyFormData.append('title', inputArticle.title);
-    bodyFormData.append('article', inputArticle.article);
+    bodyFormData.append('article', editorContent);
     bodyFormData.append('post_pass', inputArticle.post_pass);
     bodyFormData.append('pic', image);
 
@@ -168,19 +171,28 @@ export function AddArticle() {
                 />
               </div>
               <div className="my-5">
-                <label htmlFor="article" className="font-medium">
+                <label htmlFor="" className="font-medium">
                   Article
                 </label>
-                <textarea
-                  id="article"
-                  cols="30"
-                  rows="10"
-                  className="w-full border-2 rounded-lg p-3"
-                  placeholder="Artikelmu"
-                  onChange={onChangeInput}
-                  value={inputArticle.article}
-                  name='article'
-                ></textarea>
+                <CKEditor
+                    editor={ ClassicEditor }
+                    data={editorContent}
+                    onReady={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        setEditorContent(data)
+                        console.log( { event, editor, data } );
+                    } }
+                    onBlur={ ( event, editor ) => {
+                        console.log( 'Blur.', editor );
+                    } }
+                    onFocus={ ( event, editor ) => {
+                        console.log( 'Focus.', editor );
+                    } }
+                />
               </div>
               <div className="my-5">
                 <label htmlFor="" className="font-medium">
