@@ -2,6 +2,7 @@ import { Navigate, Route, Routes, BrowserRouter} from 'react-router-dom';
 import AuthChecker from '../components/AuthCheck';
 import { LoginUser } from '../pages/auth/LoginUser';
 import {Dashboard} from '../pages/menu/Dashboard'
+import { DetailArticle } from '../pages/menu/DetailArticle';
 
 function App() {
     return (
@@ -11,6 +12,7 @@ function App() {
             <Route path="/" element={<Navigate to="/login" replace={true} />} />
             <Route path="/login" element={<LoginUser />}/>
             <Route path="/dashboard" element={<AuthChecker><Dashboard /></AuthChecker>}/>
+            <Route path="/detail/:id" element={<DetailArticle />}/>
             {/* <Route path="/bookmarked" element={<AuthChecker><Bookmarked /></AuthChecker>} />
             <Route path="/liked" element={<AuthChecker><Liked /></AuthChecker>} />
             <Route path="/update-menu/:id" element={<AuthChecker><UpdateMenu /></AuthChecker>} /> */}
