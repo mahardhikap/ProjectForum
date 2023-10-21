@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getUser } from '../../redux/action/user';
 import { useDispatch, useSelector } from 'react-redux';
 import { cleanLogin } from '../../redux/action/user';
-import { getUserPost } from '../../redux/action/menu';
+import { getUserPost, deleteArticle } from '../../redux/action/menu';
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
 import { compare } from 'bcryptjs';
@@ -52,6 +52,29 @@ export function Dashboard() {
       Swal.fire('Password is incorrect!', '', 'error');
     }
   };
+
+  const handleDeletePost = (id) => {
+    Swal.fire({
+      title: 'Do you want to delete this post?',
+      showDenyButton: true,
+      confirmButtonText: 'Cancel',
+      denyButtonText: `Delete`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.close()
+      } else if (result.isDenied) {
+        dispatch(deleteArticle(id)).then(()=>{
+          Swal.fire({
+            icon: 'success',
+            title: 'Delete success!',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          dispatch(getUserPost(sortby, sort, page, limit));
+        })
+      }
+    })
+  }
 
   const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= getPost?.pages?.totalPage) {
@@ -110,6 +133,10 @@ export function Dashboard() {
             {getPost?.rows?.map((item) => {
               return item.post_pass !== 'undefined' ? (
                 <div className="my-5 p-2 bg-gray-100 rounded-lg">
+                  <div className="flex flex-row items-center gap-5">
+                    <div className="text-green-400 font-extrabold">Edit</div>
+                    <div className="text-red-400 font-extrabold" onClick={()=>handleDeletePost(item.id)}>Delete</div>
+                  </div>
                   <div className="flex justify-center items-center">
                     <img
                       src={'https://i.ibb.co/RDfWY1Y/pic-removebg-preview.png'}
@@ -138,7 +165,7 @@ export function Dashboard() {
                 <div className="my-5 p-2 bg-gray-100 rounded-lg">
                   <div className="flex flex-row items-center gap-5">
                     <div className="text-green-400 font-extrabold">Edit</div>
-                    <div className="text-red-400 font-extrabold">Delete</div>
+                    <div className="text-red-400 font-extrabold" onClick={()=>handleDeletePost(item.id)}>Delete</div>
                   </div>
                   <Link to={`/detail/${item.id}`}>
                     <div className="flex justify-center items-center">

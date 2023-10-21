@@ -5,13 +5,13 @@ const initialState = {
     isError:false
 }
 
-const getUserPost = (state=initialState,action) => {
-    if(action.type === 'GET_USERPOST_PENDING'){
+const deleteArticle = (state=initialState,action) => {
+    if(action.type === 'DELETE_ARTICLE_PENDING'){
         return{
             ...state,
             isLoading: true,
         }
-    } else if(action.type === 'GET_USERPOST_SUCCESS'){
+    } else if(action.type === 'DELETE_ARTICLE_SUCCESS'){
         return{
             ...state,
             data: action.payload,
@@ -19,7 +19,7 @@ const getUserPost = (state=initialState,action) => {
             errorMessage:'',
             isError:false
         }
-    } else if(action.type === 'GET_USERPOST_FAILED'){
+    } else if(action.type === 'DELETE_ARTICLE_FAILED'){
         return{
             ...state,
             data:null,
@@ -32,4 +32,4 @@ const getUserPost = (state=initialState,action) => {
     }
 }
 
-export default getUserPost
+export default deleteArticle
