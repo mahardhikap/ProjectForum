@@ -35,7 +35,7 @@ export function DetailArticle() {
       <h1 className="text-3xl text-center font-bold">{getArticle?.title}</h1>
       <div className="flex justify-center items-center mt-10">
         <img
-          src="https://i.ibb.co/M2JSRmW/noimage.png"
+          src={getArticle?.pic}
           className="w-[400px] h-[250px] object-cover	"
           alt="Article Cover"
         />

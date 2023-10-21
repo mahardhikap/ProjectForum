@@ -43,3 +43,49 @@ export const deleteArticle = (id) => async (dispatch) => {
     console.log('error delete article', error);
   }
 };
+
+export const addArticle = (data) => async (dispatch) => {
+  try {
+    dispatch({ type: 'POST_ARTICLE_PENDING' });
+    const result = await axios.post(`${url}/addpost`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token_')}`,
+      },
+    });
+    dispatch({ payload: result.data.data, type: 'POST_ARTICLE_SUCCESS' });
+  } catch (error) {
+    dispatch({ payload: error.response.data, type: 'POST_ARTICLE_FAILED' });
+    console.log('error post article', error);
+  }
+};
+
+export const cleanAddArticle = () => async (dispatch) => {
+  try {
+    dispatch({ type: 'POST_ARTICLE_CLEAN' });
+  } catch (error) {
+    console.log('error clean post article', error);
+  }
+};
+
+export const editArticle = (id, data) => async (dispatch) => {
+  try {
+    dispatch({ type: 'EDIT_ARTICLE_PENDING' });
+    const result = await axios.put(`${url}/updatepost/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token_')}`,
+      },
+    });
+    dispatch({ payload: result.data.data, type: 'EDIT_ARTICLE_SUCCESS' });
+  } catch (error) {
+    dispatch({ payload: error.response.data, type: 'EDIT_ARTICLE_FAILED' });
+    console.log('error edit article', error);
+  }
+};
+
+export const cleanEditArticle = () => async (dispatch) => {
+  try {
+    dispatch({ type: 'EDIT_ARTICLE_CLEAN' });
+  } catch (error) {
+    console.log('error clean edit article', error);
+  }
+};

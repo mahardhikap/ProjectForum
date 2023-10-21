@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { getUser } from '../../redux/action/user';
 import { useDispatch, useSelector } from 'react-redux';
 import { cleanLogin } from '../../redux/action/user';
 import { getUserPost, deleteArticle } from '../../redux/action/menu';
@@ -11,7 +10,7 @@ export function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [sortby, setSortby] = useState('created_at');
-  const [sort, setSort] = useState('ASC');
+  const [sort, setSort] = useState('DESC');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
   const { data: getPost } = useSelector((state) => state.getUserPost);
@@ -109,7 +108,10 @@ export function Dashboard() {
                 />
               </div>
               <div className="font-bold">MENU</div>
-              <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white">
+              <div className="font-medium my-2 bg-blue-900 rounded-md px-2 py-2 my-2 text-white">
+                Dashboard
+              </div>
+              <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white" onClick={()=>navigate('/add')}>
                 Post Article
               </div>
               <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white">
@@ -128,14 +130,14 @@ export function Dashboard() {
           </div>
           <div className="col-span-2">
             <div className="bg-blue-100 p-2 rounded-lg mt-10 md:mt-0">
-              <div className="font-bold">POST</div>
+              <div className="font-bold">DASHBOARD</div>
             </div>
             {getPost?.rows?.map((item) => {
               return item.post_pass !== 'undefined' ? (
                 <div className="my-5 p-2 bg-gray-100 rounded-lg">
                   <div className="flex flex-row items-center gap-5">
-                    <div className="text-green-400 font-extrabold">Edit</div>
-                    <div className="text-red-400 font-extrabold" onClick={()=>handleDeletePost(item.id)}>Delete</div>
+                    <div className="text-green-400 font-extrabold cursor-pointer" onClick={()=>navigate(`/edit/${item.id}`)}>Edit</div>
+                    <div className="text-red-400 font-extrabold cursor-pointer" onClick={()=>handleDeletePost(item.id)}>Delete</div>
                   </div>
                   <div className="flex justify-center items-center">
                     <img
@@ -164,8 +166,8 @@ export function Dashboard() {
               ) : (
                 <div className="my-5 p-2 bg-gray-100 rounded-lg">
                   <div className="flex flex-row items-center gap-5">
-                    <div className="text-green-400 font-extrabold">Edit</div>
-                    <div className="text-red-400 font-extrabold" onClick={()=>handleDeletePost(item.id)}>Delete</div>
+                    <div className="text-green-400 font-extrabold cursor-pointer" onClick={()=>navigate(`/edit/${item.id}`)}>Edit</div>
+                    <div className="text-red-400 font-extrabold cursor-pointer" onClick={()=>handleDeletePost(item.id)}>Delete</div>
                   </div>
                   <Link to={`/detail/${item.id}`}>
                     <div className="flex justify-center items-center">

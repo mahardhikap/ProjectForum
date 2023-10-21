@@ -4,6 +4,8 @@ import login from "./login";
 import getUserPost from "./getUserPost";
 import getDetailArticle from "./getDetailArticle";
 import deleteArticle from "./deleteArticle";
+import addArticle from "./addArticle";
+import editArticle from "./editArticle";
 
 
 const rootReducers = combineReducers({
@@ -11,7 +13,9 @@ const rootReducers = combineReducers({
     login,
     getUserPost,
     getDetailArticle,
-    deleteArticle
+    deleteArticle,
+    addArticle,
+    editArticle
 })
 
 export default rootReducers
