@@ -5,6 +5,7 @@ import { cleanLogin } from '../../redux/action/user';
 import { getUserPost } from '../../redux/action/menu';
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
+import { compare } from 'bcryptjs';
 
 export function Dashboard() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export function Dashboard() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
   const { data: getPost } = useSelector((state) => state.getUserPost);
+  const [inputPassword, setInputPassword] = useState('');
 
   const handleLogOut = () => {
     Swal.fire({
@@ -33,6 +35,22 @@ export function Dashboard() {
         });
       }
     });
+  };
+
+  const onChangePassword = (e) => {
+    setInputPassword(e.target.value);
+  };
+
+  const handlePassword = async (password, id) => {
+    const storedHash = password;
+    const isMatch = await compare(inputPassword, storedHash);
+
+    if (isMatch) {
+      localStorage.setItem('securearticle_', inputPassword)
+      navigate(`/detail/${id}`);
+    } else {
+      Swal.fire('Password is incorrect!', '', 'error');
+    }
   };
 
   const goToPage = (pageNumber) => {
@@ -90,7 +108,7 @@ export function Dashboard() {
               <div className="font-bold">POST</div>
             </div>
             {getPost?.rows?.map((item) => {
-              return item.post_pass ? (
+              return item.post_pass !== 'undefined' ? (
                 <div className="my-5 p-2 bg-gray-100 rounded-lg">
                   <div className="flex justify-center items-center">
                     <img
@@ -106,11 +124,14 @@ export function Dashboard() {
                   <h1 className="font-bold border-b-2 py-1 text-center mb-3">
                     {item.title}
                   </h1>
-                  <div className="flex items-center justify-center">
+                  <div className="flex items-center justify-center gap-3">
                     <input
                       className="p-3 rounded-lg"
-                      placeholder="password article"
+                      placeholder="Input password"
+                      onChange={onChangePassword}
+                      value={inputPassword}
                     />
+                    <div onClick={() => handlePassword(item.post_pass, item.id)} className='p-3 bg-green-400 cursor-pointer rounded-lg font-medium'>OK</div>
                   </div>
                 </div>
               ) : (
