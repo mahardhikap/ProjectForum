@@ -44,7 +44,7 @@ export function DetailArticle() {
         {getArticle?.created_at}. Author: {getArticle?.username}
       </div>
       <p className="text-justify">
-        {isPasswordMatch ? getArticle?.article : 'Password does not match.'}
+        {isPasswordMatch || getArticle?.post_pass === 'undefined' ? getArticle?.article : 'Password does not match.'}
       </p>
     </section>
   );
