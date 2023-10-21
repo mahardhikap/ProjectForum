@@ -148,7 +148,7 @@ export function EditArticle() {
               <div className="font-medium my-2 bg-blue-900 rounded-md px-2 py-2 my-2 text-white">
                 Post Article
               </div>
-              <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white">
+              <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white" onClick={()=>navigate(`/profile/${localStorage.getItem('id_')}`)}>
                 Edit Profile
               </div>
               <div
@@ -235,7 +235,7 @@ export function EditArticle() {
                 />
               </div>
               <div className='my-10'>
-                <button className="w-full rounded-lg py-3 bg-blue-500 font-bold text-white">
+                <button type='submit' className="w-full rounded-lg py-3 bg-blue-500 font-bold text-white">
                   Post Submit
                 </button>
               </div>

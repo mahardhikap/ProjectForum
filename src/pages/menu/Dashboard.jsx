@@ -115,7 +115,7 @@ export function Dashboard() {
               <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white" onClick={()=>navigate('/add')}>
                 Post Article
               </div>
-              <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white">
+              <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white" onClick={()=>navigate(`/profile/${localStorage.getItem('id_')}`)}>
                 Edit Profile
               </div>
               <div
@@ -130,9 +130,9 @@ export function Dashboard() {
             <div className="bg-blue-100 p-2 rounded-lg mt-10 md:mt-0">
               <div className="font-bold">DASHBOARD</div>
             </div>
-            {getPost?.rows?.map((item) => {
+            {getPost?.rows?.map((item, index) => {
               return item.post_pass !== 'undefined' ? (
-                <div className="my-5 p-2 bg-gray-100 rounded-lg">
+                <div className="my-5 p-2 bg-gray-100 rounded-lg" key={index}>
                   <div className="flex flex-row items-center gap-5">
                     <div className="text-green-400 font-extrabold cursor-pointer" onClick={()=>navigate(`/edit/${item.id}`)}>Edit</div>
                     <div className="text-red-400 font-extrabold cursor-pointer" onClick={()=>handleDeletePost(item.id)}>Delete</div>
@@ -141,9 +141,9 @@ export function Dashboard() {
                     <img
                       src={'https://i.ibb.co/RDfWY1Y/pic-removebg-preview.png'}
                       style={{
-                        height: '200px',
+                        height: '220px',
                         objectFit: 'cover',
-                        width: '200px',
+                        width: '220px',
                       }}
                       className="rounded-lg"
                     />
@@ -162,7 +162,7 @@ export function Dashboard() {
                   </div>
                 </div>
               ) : (
-                <div className="my-5 p-2 bg-gray-100 rounded-lg">
+                <div className="my-5 p-2 bg-gray-100 rounded-lg" key={index}>
                   <div className="flex flex-row items-center gap-5">
                     <div className="text-green-400 font-extrabold cursor-pointer" onClick={()=>navigate(`/edit/${item.id}`)}>Edit</div>
                     <div className="text-red-400 font-extrabold cursor-pointer" onClick={()=>handleDeletePost(item.id)}>Delete</div>
@@ -172,9 +172,9 @@ export function Dashboard() {
                       <img
                         src={item.pic}
                         style={{
-                          height: '150px',
+                          height: '250px',
                           objectFit: 'cover',
-                          width: '250px',
+                          width: '450px',
                         }}
                         className="rounded-lg border-2 border-gray-300"
                       />

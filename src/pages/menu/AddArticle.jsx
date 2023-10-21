@@ -7,6 +7,7 @@ import { addArticle, cleanAddArticle } from '../../redux/action/menu';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+
 export function AddArticle() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -65,8 +66,6 @@ export function AddArticle() {
     }
   }, [data, isError]);
 
-  console.log(inputArticle)
-
   const handleLogOut = () => {
     Swal.fire({
       title: 'Do you want to logout?',
@@ -118,7 +117,7 @@ export function AddArticle() {
               <div className="font-medium my-2 bg-blue-900 rounded-md px-2 py-2 my-2 text-white">
                 Post Article
               </div>
-              <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white">
+              <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white" onClick={()=>navigate(`/profile/${localStorage.getItem('id_')}`)}>
                 Edit Profile
               </div>
               <div
@@ -137,7 +136,7 @@ export function AddArticle() {
               <label
                 htmlFor="file"
                 style={{
-                  backgroundImage: `url(${image && inputArticle.pic})`,
+                  backgroundImage: `url(${image && inputArticle.pic || 'https://i.ibb.co/M2JSRmW/noimage.png'})`,
                   backgroundPosition: 'center',
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
@@ -145,7 +144,7 @@ export function AddArticle() {
                 }}
                 className="w-full flex justify-center items-center rounded border-2 my-5"
               >
-                Add Image
+                {/* Add Image */}
               </label>
               <input
                 className="hidden"
