@@ -6,6 +6,7 @@ import { DetailArticle } from '../pages/menu/DetailArticle';
 import { AddArticle } from '../pages/menu/AddArticle';
 import { EditArticle } from '../pages/menu/EditArticle';
 import { EditProfile } from '../pages/menu/EditProfile';
+import NotFound from '../components/NotFound';
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/add" element={<AuthChecker><AddArticle /></AuthChecker>}/>
             <Route path="/edit/:id" element={<AuthChecker><EditArticle /></AuthChecker>}/>
             <Route path="/profile/:id" element={<AuthChecker><EditProfile /></AuthChecker>}/>
+            <Route path="*" element={<NotFound/>} />
             {/* <Route path="/bookmarked" element={<AuthChecker><Bookmarked /></AuthChecker>} />
             <Route path="/liked" element={<AuthChecker><Liked /></AuthChecker>} />
             <Route path="/update-menu/:id" element={<AuthChecker><UpdateMenu /></AuthChecker>} /> */}
