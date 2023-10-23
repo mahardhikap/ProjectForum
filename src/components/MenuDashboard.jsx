@@ -27,7 +27,7 @@ export function MenuDashboard() {
         Swal.fire('Logout success!', '', 'success').then(() => {
           localStorage.clear();
           dispatch(cleanLogin());
-          navigate('/login');
+          navigate('/homepage');
         });
       }
     });
@@ -50,8 +50,8 @@ export function MenuDashboard() {
         <Link to={'/dashboard'}>
           <div
             className={`font-medium my-2 ${
-              activeMenu === '/dashboard' ? 'bg-blue-900' : 'bg-blue-500'
-            } rounded-md px-2 py-2 my-2 text-white`}
+              activeMenu === '/dashboard' ? 'bg-blue-300' : 'bg-blue-100'
+            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-blue-300`}
           >
             Dashboard
           </div>
@@ -59,8 +59,8 @@ export function MenuDashboard() {
         <Link to={'/add'}>
           <div
             className={`font-medium my-2 ${
-              activeMenu === '/add' ? 'bg-blue-900' : 'bg-blue-500'
-            } rounded-md px-2 py-2 my-2 text-white`}
+              activeMenu === '/add' ? 'bg-blue-300' : 'bg-blue-100'
+            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-blue-300`}
           >
             Post Article
           </div>
@@ -68,14 +68,14 @@ export function MenuDashboard() {
         <Link to={`/profile/${localStorage.getItem('id_')}`}>
           <div
             className={`font-medium my-2 ${
-              activeMenu === `/profile/${localStorage.getItem('id_')}` ? 'bg-blue-900' : 'bg-blue-500'
-            } rounded-md px-2 py-2 my-2 text-white w-full`}
+              activeMenu === `/profile/${localStorage.getItem('id_')}` ? 'bg-blue-300' : 'bg-blue-100'
+            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-blue-300`}
           >
             Edit Profile
           </div>
         </Link>
         <div
-          className="font-medium my-2 bg-red-500 rounded-md px-2 py-2 my-2 text-white"
+          className="font-medium my-2 bg-blue-100 hover:bg-red-500 rounded-md px-2 py-2 my-2 text-black"
           onClick={() => handleLogOut()}
         >
           Logout

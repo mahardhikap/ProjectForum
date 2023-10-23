@@ -1,26 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserPost, deleteArticle } from '../../redux/action/menu';
-import Swal from 'sweetalert2';
+import { getAllPost } from '../../redux/action/menu';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { compare } from 'bcryptjs';
-import { MenuDashboard } from '../../components/MenuDashboard';
-import { faTrash, faPenToSquare, faCircleRight, faCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faCircleRight, faCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ParticleComponent } from '../../components/ParticleComponent';
 
-export function Dashboard() {
+export function Homepage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [searchby, setSearchby] = useState('title');
+  const [search, setSearch] = useState('');
   const [sortby, setSortby] = useState('created_at');
   const [sort, setSort] = useState('DESC');
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
-  const { data: getPost } = useSelector((state) => state.getUserPost);
   const [inputPassword, setInputPassword] = useState('');
-
-  const onChangePassword = (e) => {
-    setInputPassword(e.target.value);
-  };
+  const { data: getPost } = useSelector((state) => state.getAllPost);
 
   const handlePassword = async (password, id) => {
     const storedHash = password;
@@ -34,28 +32,8 @@ export function Dashboard() {
     }
   };
 
-  const handleDeletePost = (id) => {
-    Swal.fire({
-      title: 'Do you want to delete this post?',
-      icon: 'question',
-      showDenyButton: true,
-      confirmButtonText: 'Cancel',
-      denyButtonText: `Delete`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.close();
-      } else if (result.isDenied) {
-        dispatch(deleteArticle(id)).then(() => {
-          Swal.fire({
-            icon: 'success',
-            title: 'Delete success!',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          dispatch(getUserPost(sortby, sort, page, limit));
-        });
-      }
-    });
+  const onChangePassword = (e) => {
+    setInputPassword(e.target.value);
   };
 
   const goToPage = (pageNumber) => {
@@ -65,45 +43,29 @@ export function Dashboard() {
   };
 
   useEffect(() => {
-    dispatch(getUserPost(sortby, sort, page, limit));
+    dispatch(getAllPost(searchby, search, sortby, sort, page, limit));
     window.scrollTo(0, 0);
   }, [page]);
 
   return (
     <section>
-      <div className="container w-11/12 lg:w-10/12 mx-auto my-10">
-        <h3 className="p-0 m-0">
-          Hello,{' '}
-          <span className="font-medium">{localStorage.getItem('name_')}</span>!
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 mt-5">
-          <div className="col-span-1 p-0 md:pe-5">
-            <MenuDashboard />
-          </div>
-          <div className="col-span-2">
-            <div className="bg-blue-100 p-2 rounded-lg mt-10 md:mt-0">
-              <div className="font-bold">DASHBOARD</div>
+      <div className="container mx-auto w-11/12 lg:w-3/5">
+        <div className="mt-10 p-2 rounded-xl">
+          <div className="flex flex-row items-center justify-between font-bold">
+            <div>HOMEPAGE</div>
+            <div onClick={() => navigate('/login')} className="cursor-pointer">
+              LOGIN
             </div>
+          </div>
+        </div>
+        <div className="mt-5 mb-10 p-2 rounded-xl">
+          <div>
             {getPost?.rows?.map((item, index) => {
               return item.post_pass !== 'undefined' ? (
                 <div
-                  className="my-5 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)]"
+                  className="my-5 p-2 rounded-lg bg-white shadow-[1px_1px_10px_rgba(0,0,0,0.1)]"
                   key={index}
                 >
-                  <div className="flex flex-row items-center gap-5">
-                    <div
-                      className="text-green-400 font-extrabold cursor-pointer text-2xl"
-                      onClick={() => navigate(`/edit/${item.id}`)}
-                    >
-                      <FontAwesomeIcon icon={faPenToSquare} />
-                    </div>
-                    <div
-                      className="text-red-400 font-extrabold cursor-pointer text-2xl"
-                      onClick={() => handleDeletePost(item.id)}
-                    >
-                      <FontAwesomeIcon icon={faTrash} />
-                    </div>
-                  </div>
                   <div className="grid grid-cols-1 lg:grid-cols-2">
                     <div className="flex justify-center items-center col-span-1 border rounded-lg m-1 md:m-2">
                       <img
@@ -136,7 +98,7 @@ export function Dashboard() {
                           OK
                         </div>
                       </div>
-                      <div className='w-full'>
+                      <div className="w-full">
                         <p className="font-bold mt-10">{item.username}</p>
                         <p>
                           {`${new Intl.DateTimeFormat('id-ID', {
@@ -158,23 +120,9 @@ export function Dashboard() {
                 </div>
               ) : (
                 <div
-                  className="my-5 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)]"
+                  className="my-5 p-2 rounded-lg bg-white shadow-[1px_1px_10px_rgba(0,0,0,0.1)]"
                   key={index}
                 >
-                  <div className="flex flex-row items-center gap-5">
-                    <div
-                      className="text-green-400 font-extrabold cursor-pointer text-2xl"
-                      onClick={() => navigate(`/edit/${item.id}`)}
-                    >
-                      <FontAwesomeIcon icon={faPenToSquare} />
-                    </div>
-                    <div
-                      className="text-red-400 font-extrabold cursor-pointer text-2xl"
-                      onClick={() => handleDeletePost(item.id)}
-                    >
-                      <FontAwesomeIcon icon={faTrash} />
-                    </div>
-                  </div>
                   <Link to={`/detail/${item.id}`}>
                     <div className="grid grid-cols-1 lg:grid-cols-2">
                       <div className="flex justify-center items-center m-1 md:m-2 border rounded-lg">
@@ -189,7 +137,7 @@ export function Dashboard() {
                         />
                       </div>
                       <div className="col-span-1 flex flex-col justify-center items-center m-1 md:m-2">
-                        <div className='w-full'>
+                        <div className="w-full">
                           <h1 className="font-bold py-1 mb-3">
                             {item.title.slice(0, 30)}
                             {item.title.length > 100 ? (
@@ -248,12 +196,13 @@ export function Dashboard() {
                 className="rounded p-2 text-blue-100 hover:text-blue-300 border-0 ms-3 text-3xl"
                 onClick={() => goToPage(page + 1)}
               >
-                 <FontAwesomeIcon icon={faCircleRight} />
+                <FontAwesomeIcon icon={faCircleRight} />
               </button>
             </div>
           </div>
         </div>
       </div>
+      {/* <ParticleComponent /> */}
     </section>
   );
 }

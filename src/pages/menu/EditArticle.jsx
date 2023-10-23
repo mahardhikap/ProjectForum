@@ -99,7 +99,7 @@ export function EditArticle() {
 
   return (
     <section>
-      <div className="container w-10/12 mx-auto my-10">
+      <div className="container w-11/12 lg:w-10/12 mx-auto my-10">
         <h3 className="p-0 m-0">
           Hello,{' '}
           <span className="font-medium">{localStorage.getItem('name_')}</span>!

@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserByToken, editProfile, cleanEditProfile, cleanLogin } from "../../redux/action/user";
+import { getUserByToken, editProfile, cleanEditProfile } from "../../redux/action/user";
 import Swal from "sweetalert2";
+import { MenuDashboard } from "../../components/MenuDashboard";
 
 
 export function EditProfile() {
@@ -16,26 +17,6 @@ const [inputUser, setInputUser] = useState({
     password:'',
     photo:''
 })
-
-const handleLogOut = () => {
-    Swal.fire({
-      title: 'Do you want to logout?',
-      icon: 'warning',
-      showDenyButton: true,
-      confirmButtonColor: '#50C878',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'No, cancel!',
-      denyButtonText: 'Yes, logout!',
-    }).then((result) => {
-      if (result.isDenied) {
-        Swal.fire('Logout success!', '', 'success').then(() => {
-          localStorage.clear();
-          dispatch(cleanLogin());
-          navigate('/login');
-        });
-      }
-    });
-  };
 
 const updateProfile = (e) => {
     e.preventDefault();
@@ -105,45 +86,14 @@ useEffect(() => {
 
   return (
     <section>
-      <div className="container w-10/12 mx-auto my-10">
+      <div className="container w-11/12 lg:w-10/12 mx-auto my-10">
         <h3 className="p-0 m-0">
           Hello,{' '}
           <span className="font-medium">{localStorage.getItem('name_')}</span>!
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 mt-5">
           <div className="col-span-1 p-0 md:pe-5">
-            <div className="bg-white shadow-[2px_2px_10px_rgba(0,0,0,0.2)] p-2 rounded-lg sticky top-5 cursor-pointer">
-              <div className="flex items-center justify-center">
-                <img
-                  src={localStorage.getItem('photo_')}
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    objectFit: 'cover',
-                  }}
-                  className="rounded-full border-2 border-gray-300"
-                />
-              </div>
-              <div className="font-bold">MENU</div>
-              <div
-                className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white"
-                onClick={() => navigate('/dashboard')}
-              >
-                Dashboard
-              </div>
-              <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white" onClick={()=>navigate('/add')}>
-                Post Article
-              </div>
-              <div className="font-medium my-2 bg-blue-900 rounded-md px-2 py-2 my-2 text-white">
-                Edit Profile
-              </div>
-              <div
-                className="font-medium my-2 bg-red-500 rounded-md px-2 py-2 my-2 text-white"
-                onClick={() => handleLogOut()}
-              >
-                Logout
-              </div>
-            </div>
+            <MenuDashboard/>
           </div>
           <div className="col-span-2">
             <div className="bg-blue-100 p-2 rounded-lg mt-10 md:mt-0">

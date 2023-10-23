@@ -8,6 +8,7 @@ import addArticle from "./addArticle";
 import editArticle from "./editArticle";
 import editProfile from "./editProfile";
 import getUserByToken from "./getUserByToken";
+import getAllPost from "./getAllPost";
 
 
 const rootReducers = combineReducers({
@@ -19,7 +20,8 @@ const rootReducers = combineReducers({
     addArticle,
     editArticle,
     editProfile,
-    getUserByToken
+    getUserByToken,
+    getAllPost
 })
 
 export default rootReducers

@@ -89,3 +89,16 @@ export const cleanEditArticle = () => async (dispatch) => {
     console.log('error clean edit article', error);
   }
 };
+
+export const getAllPost = (searchby, search, sortby, sort, page, limit) => async (dispatch) => {
+  try {
+    dispatch({ type: 'GET_ALLPOST_PENDING' });
+    const result = await axios.get(
+      `${url}/sort?searchby=${searchby}&search=${search}&sortby=${sortby}&sort=${sort}&page=${page}&limit=${limit}`
+    );
+    dispatch({ payload: result.data.data, type: 'GET_ALLPOST_SUCCESS' });
+  } catch (error) {
+    dispatch({ payload: error.response.data, type: 'GET_ALLPOST_FAILED' });
+    console.log('error get all post', error);
+  }
+};
