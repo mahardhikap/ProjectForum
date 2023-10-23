@@ -7,6 +7,8 @@ import { compare } from 'bcryptjs';
 import { faCircleRight, faCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ParticleComponent } from '../../components/ParticleComponent';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export function Homepage() {
   const dispatch = useDispatch();
@@ -43,13 +45,14 @@ export function Homepage() {
   };
 
   useEffect(() => {
+    AOS.init();
     dispatch(getAllPost(searchby, search, sortby, sort, page, limit));
     window.scrollTo(0, 0);
   }, [page]);
 
   return (
-    <section>
-      <div className="container mx-auto w-11/12 lg:w-3/5">
+    <section className='relative container mx-auto w-11/12 lg:w-3/5'>
+      <div className="z-10 absolute">
         <div className="mt-10 p-2 rounded-xl">
           <div className="flex flex-row items-center justify-between font-bold">
             <div>HOMEPAGE</div>
@@ -63,8 +66,9 @@ export function Homepage() {
             {getPost?.rows?.map((item, index) => {
               return item.post_pass !== 'undefined' ? (
                 <div
-                  className="my-5 p-2 rounded-lg bg-white shadow-[1px_1px_10px_rgba(0,0,0,0.1)]"
+                  className="my-5 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
                   key={index}
+                  data-aos="fade-right"
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-2">
                     <div className="flex justify-center items-center col-span-1 border rounded-lg m-1 md:m-2">
@@ -120,8 +124,9 @@ export function Homepage() {
                 </div>
               ) : (
                 <div
-                  className="my-5 p-2 rounded-lg bg-white shadow-[1px_1px_10px_rgba(0,0,0,0.1)]"
+                  className="my-5 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
                   key={index}
+                  data-aos="fade-right"
                 >
                   <Link to={`/detail/${item.id}`}>
                     <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -202,7 +207,7 @@ export function Homepage() {
           </div>
         </div>
       </div>
-      {/* <ParticleComponent /> */}
+      <ParticleComponent/>
     </section>
   );
 }
