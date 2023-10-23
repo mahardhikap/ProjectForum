@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import { cleanLogin } from '../../redux/action/user';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { addArticle, cleanAddArticle } from '../../redux/action/menu';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { MenuDashboard } from '../../components/MenuDashboard';
 
 
 export function AddArticle() {
@@ -66,67 +66,16 @@ export function AddArticle() {
     }
   }, [data, isError]);
 
-  const handleLogOut = () => {
-    Swal.fire({
-      title: 'Do you want to logout?',
-      icon: 'warning',
-      showDenyButton: true,
-      confirmButtonColor: '#50C878',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'No, cancel!',
-      denyButtonText: 'Yes, logout!',
-    }).then((result) => {
-      if (result.isDenied) {
-        Swal.fire('Logout success!', '', 'success').then(() => {
-          localStorage.clear();
-          dispatch(cleanLogin());
-          navigate('/login');
-        });
-      }
-    });
-  };
-
   return (
     <section>
       <div className="container w-10/12 mx-auto my-10">
-        <h1 className="p-0 m-0">
+        <h3 className="p-0 m-0">
           Hello,{' '}
           <span className="font-medium">{localStorage.getItem('name_')}</span>!
-        </h1>
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 mt-5">
           <div className="col-span-1 p-0 md:pe-5">
-            <div className="bg-white shadow-[2px_2px_10px_rgba(0,0,0,0.2)] p-2 rounded-lg sticky top-5 cursor-pointer">
-              <div className="flex items-center justify-center">
-                <img
-                  src={localStorage.getItem('photo_')}
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    objectFit: 'cover',
-                  }}
-                  className="rounded-full border-2 border-gray-300"
-                />
-              </div>
-              <div className="font-bold">MENU</div>
-              <div
-                className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white"
-                onClick={() => navigate('/dashboard')}
-              >
-                Dashboard
-              </div>
-              <div className="font-medium my-2 bg-blue-900 rounded-md px-2 py-2 my-2 text-white">
-                Post Article
-              </div>
-              <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white" onClick={()=>navigate(`/profile/${localStorage.getItem('id_')}`)}>
-                Edit Profile
-              </div>
-              <div
-                className="font-medium my-2 bg-red-500 rounded-md px-2 py-2 my-2 text-white"
-                onClick={() => handleLogOut()}
-              >
-                Logout
-              </div>
-            </div>
+            <MenuDashboard/>
           </div>
           <div className="col-span-2">
             <div className="bg-blue-100 p-2 rounded-lg mt-10 md:mt-0">
@@ -175,19 +124,29 @@ export function AddArticle() {
                     data={editorContent}
                     onReady={ editor => {
                         // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
                     } }
                     onChange={ ( event, editor ) => {
                         const data = editor.getData();
                         setEditorContent(data)
-                        console.log( { event, editor, data } );
                     } }
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
+                    config={{
+                      toolbar: {
+                        items: [
+                          "heading",
+                          "|",
+                          "bold",
+                          "italic",
+                          "link",
+                          "bulletedList",
+                          "numberedList",
+                          "blockQuote",
+                          "insertTable",
+                          "|",
+                          "undo",
+                          "redo"
+                        ],
+                      },
+                    }}
                 />
               </div>
               <div className="my-5">

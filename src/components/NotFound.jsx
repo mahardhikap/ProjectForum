@@ -26,7 +26,7 @@ function NotFound() {
           interactivity: {
             events: {
               onClick: {
-                enable: true,
+                enable: false,
                 mode: 'push',
               },
               onHover: {
@@ -40,7 +40,7 @@ function NotFound() {
                 quantity: 4,
               },
               repulse: {
-                distance: 200,
+                distance: 100,
                 duration: 0.4,
               },
             },

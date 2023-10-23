@@ -31,7 +31,7 @@ export function DetailArticle() {
   }, [getArticle]);
 
   return (
-    <section className="w-9/12 container mx-auto my-10">
+    <section className="w-3/5 container mx-auto my-10 shadow-[1px_1px_10px_rgba(0,0,0,0.1)] p-10 rounded-xl">
       <h1 className="text-3xl text-center font-bold">{getArticle?.title}</h1>
       <div className="flex justify-center items-center mt-10">
         <img
@@ -41,14 +41,23 @@ export function DetailArticle() {
         />
       </div>
       <div className="mt-5 mb-10 text-center">
-        {getArticle?.created_at}. Author: {getArticle?.username}
+        {getArticle
+          ? new Intl.DateTimeFormat('id-ID', {
+              weekday: 'long',
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            }).format(new Date(getArticle.created_at)).replace(
+              'pukul',
+              '|'
+            )
+          : null} WIB | {getArticle?.username}
       </div>
       <div>
         {isPasswordMatch || getArticle?.post_pass === 'undefined' ? (
-          <div
-            id="article-content"
-            dangerouslySetInnerHTML={{ __html: getArticle?.article }}
-          ></div>
+          <div dangerouslySetInnerHTML={{ __html: getArticle?.article }}></div>
         ) : (
           'Password does not match.'
         )}

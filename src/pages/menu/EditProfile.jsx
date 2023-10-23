@@ -106,10 +106,10 @@ useEffect(() => {
   return (
     <section>
       <div className="container w-10/12 mx-auto my-10">
-        <h1 className="p-0 m-0">
+        <h3 className="p-0 m-0">
           Hello,{' '}
           <span className="font-medium">{localStorage.getItem('name_')}</span>!
-        </h1>
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 mt-5">
           <div className="col-span-1 p-0 md:pe-5">
             <div className="bg-white shadow-[2px_2px_10px_rgba(0,0,0,0.2)] p-2 rounded-lg sticky top-5 cursor-pointer">
@@ -158,8 +158,8 @@ useEffect(() => {
                   backgroundPosition: 'center',
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
-                  height: '300px',
-                  width:'300px',
+                  height: '250px',
+                  width:'250px',
                   borderRadius:'75%'
                 }}
                 className="w-full flex justify-center items-center rounded border-2 my-5"

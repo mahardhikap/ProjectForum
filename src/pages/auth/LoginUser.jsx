@@ -59,7 +59,7 @@ export function LoginUser() {
           interactivity: {
             events: {
               onClick: {
-                enable: true,
+                enable: false,
                 mode: 'push',
               },
               onHover: {
@@ -73,7 +73,7 @@ export function LoginUser() {
                 quantity: 4,
               },
               repulse: {
-                distance: 200,
+                distance: 100,
                 duration: 0.4,
               },
             },
@@ -124,7 +124,7 @@ export function LoginUser() {
           LOGIN PROJECT13
         </h1>
         <form
-          className="w-10/12 sm:w-1/3 bg-white shadow-[2px_2px_10px_rgba(0,0,0,0.5)] rounded-lg p-3"
+          className="w-10/12 sm:w-1/3 bg-white shadow-[1px_1px_10px_rgba(0,0,0,0.1)] rounded-lg p-3"
           onSubmit={postData}
         >
           <div>

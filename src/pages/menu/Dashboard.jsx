@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { cleanLogin } from '../../redux/action/user';
 import { getUserPost, deleteArticle } from '../../redux/action/menu';
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
 import { compare } from 'bcryptjs';
+import { MenuDashboard } from '../../components/MenuDashboard';
 
 export function Dashboard() {
   const dispatch = useDispatch();
@@ -16,26 +16,6 @@ export function Dashboard() {
   const { data: getPost } = useSelector((state) => state.getUserPost);
   const [inputPassword, setInputPassword] = useState('');
 
-  const handleLogOut = () => {
-    Swal.fire({
-      title: 'Do you want to logout?',
-      icon: 'warning',
-      showDenyButton: true,
-      confirmButtonColor: '#50C878',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'No, cancel!',
-      denyButtonText: 'Yes, logout!',
-    }).then((result) => {
-      if (result.isDenied) {
-        Swal.fire('Logout success!', '', 'success').then(() => {
-          localStorage.clear();
-          dispatch(cleanLogin());
-          navigate('/login');
-        });
-      }
-    });
-  };
-
   const onChangePassword = (e) => {
     setInputPassword(e.target.value);
   };
@@ -45,7 +25,7 @@ export function Dashboard() {
     const isMatch = await compare(inputPassword, storedHash);
 
     if (isMatch) {
-      localStorage.setItem('securearticle_', inputPassword)
+      localStorage.setItem('securearticle_', inputPassword);
       navigate(`/detail/${id}`);
     } else {
       Swal.fire('Password is incorrect!', '', 'error');
@@ -61,20 +41,20 @@ export function Dashboard() {
       denyButtonText: `Delete`,
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.close()
+        Swal.close();
       } else if (result.isDenied) {
-        dispatch(deleteArticle(id)).then(()=>{
+        dispatch(deleteArticle(id)).then(() => {
           Swal.fire({
             icon: 'success',
             title: 'Delete success!',
             showConfirmButton: false,
-            timer: 1500
-          })
+            timer: 1500,
+          });
           dispatch(getUserPost(sortby, sort, page, limit));
-        })
+        });
       }
-    })
-  }
+    });
+  };
 
   const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= getPost?.pages?.totalPage) {
@@ -90,41 +70,13 @@ export function Dashboard() {
   return (
     <section>
       <div className="container w-10/12 mx-auto my-10">
-        <h1 className="p-0 m-0">
+        <h3 className="p-0 m-0">
           Hello,{' '}
           <span className="font-medium">{localStorage.getItem('name_')}</span>!
-        </h1>
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 mt-5">
           <div className="col-span-1 p-0 md:pe-5">
-            <div className="bg-white shadow-[2px_2px_10px_rgba(0,0,0,0.2)] p-2 rounded-lg sticky top-5 cursor-pointer">
-              <div className="flex items-center justify-center">
-                <img
-                  src={localStorage.getItem('photo_')}
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    objectFit: 'cover',
-                  }}
-                  className="rounded-full border-2 border-gray-300"
-                />
-              </div>
-              <div className="font-bold">MENU</div>
-              <div className="font-medium my-2 bg-blue-900 rounded-md px-2 py-2 my-2 text-white">
-                Dashboard
-              </div>
-              <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white" onClick={()=>navigate('/add')}>
-                Post Article
-              </div>
-              <div className="font-medium my-2 bg-blue-500 rounded-md px-2 py-2 my-2 text-white" onClick={()=>navigate(`/profile/${localStorage.getItem('id_')}`)}>
-                Edit Profile
-              </div>
-              <div
-                className="font-medium my-2 bg-red-500 rounded-md px-2 py-2 my-2 text-white"
-                onClick={() => handleLogOut()}
-              >
-                Logout
-              </div>
-            </div>
+            <MenuDashboard />
           </div>
           <div className="col-span-2">
             <div className="bg-blue-100 p-2 rounded-lg mt-10 md:mt-0">
@@ -132,68 +84,152 @@ export function Dashboard() {
             </div>
             {getPost?.rows?.map((item, index) => {
               return item.post_pass !== 'undefined' ? (
-                <div className="my-5 p-2 bg-gray-100 rounded-lg" key={index}>
+                <div
+                  className="my-5 p-10 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)]"
+                  key={index}
+                >
                   <div className="flex flex-row items-center gap-5">
-                    <div className="text-green-400 font-extrabold cursor-pointer" onClick={()=>navigate(`/edit/${item.id}`)}>Edit</div>
-                    <div className="text-red-400 font-extrabold cursor-pointer" onClick={()=>handleDeletePost(item.id)}>Delete</div>
+                    <div
+                      className="text-green-400 font-extrabold cursor-pointer"
+                      onClick={() => navigate(`/edit/${item.id}`)}
+                    >
+                      Edit
+                    </div>
+                    <div
+                      className="text-red-400 font-extrabold cursor-pointer"
+                      onClick={() => handleDeletePost(item.id)}
+                    >
+                      Delete
+                    </div>
                   </div>
-                  <div className="flex justify-center items-center">
-                    <img
-                      src={'https://i.ibb.co/RDfWY1Y/pic-removebg-preview.png'}
-                      style={{
-                        height: '220px',
-                        objectFit: 'cover',
-                        width: '220px',
-                      }}
-                      className="rounded-lg"
-                    />
-                  </div>
-                  <h1 className="font-bold border-b-2 py-1 text-center mb-3">
-                    {item.title}
-                  </h1>
-                  <div className="flex items-center justify-center gap-3">
-                    <input
-                      className="p-3 rounded-lg"
-                      placeholder="Input password"
-                      onChange={onChangePassword}
-                      value={inputPassword}
-                    />
-                    <div onClick={() => handlePassword(item.post_pass, item.id)} className='p-3 bg-green-400 cursor-pointer rounded-lg font-medium'>OK</div>
-                  </div>
-                </div>
-              ) : (
-                <div className="my-5 p-2 bg-gray-100 rounded-lg" key={index}>
-                  <div className="flex flex-row items-center gap-5">
-                    <div className="text-green-400 font-extrabold cursor-pointer" onClick={()=>navigate(`/edit/${item.id}`)}>Edit</div>
-                    <div className="text-red-400 font-extrabold cursor-pointer" onClick={()=>handleDeletePost(item.id)}>Delete</div>
-                  </div>
-                  <Link to={`/detail/${item.id}`}>
-                    <div className="flex justify-center items-center">
+                  <div className="grid grid-cols-2">
+                    <div className="flex justify-center items-center col-span-1 border rounded-lg m-2">
                       <img
-                        src={item.pic}
+                        src={
+                          'https://i.ibb.co/RDfWY1Y/pic-removebg-preview.png'
+                        }
                         style={{
-                          height: '250px',
+                          height: '280px',
                           objectFit: 'cover',
                           width: '450px',
                         }}
-                        className="rounded-lg border-2 border-gray-300"
+                        className="rounded-lg"
                       />
                     </div>
-                    <h1 className="font-bold border-b-2 py-1 text-center mb-3">
-                      {item.title}
-                    </h1>
-                    <div>
-                      <div id="article-content" dangerouslySetInnerHTML={{ __html: item.article.slice(0, 200) }}></div>
-                      {item.article.length > 200 ? (
-                        <span className="font-bold text-blue-300">
-                          ...READ MORE
-                        </span>
-                      ) : (
-                        ''
-                      )}
+                    <div className="col-span-1 flex flex-col justify-center items-center m-2">
+                      <h1 className="font-bold py-1 mb-3">{item.title}</h1>
+                      <div className="flex items-center justify-center gap-3">
+                        <input
+                          className="p-3 rounded-lg border outline-none"
+                          placeholder="Input password"
+                          onChange={onChangePassword}
+                          value={inputPassword}
+                        />
+                        <div
+                          onClick={() =>
+                            handlePassword(item.post_pass, item.id)
+                          }
+                          className="p-3 bg-green-400 cursor-pointer rounded-lg font-medium"
+                        >
+                          OK
+                        </div>
+                      </div>
+                      <div>
+                        <p className="font-bold mt-10">{item.username}</p>
+                        <p>
+                          {`${new Intl.DateTimeFormat('id-ID', {
+                            weekday: 'long',
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          }).format(new Date(`${item.created_at}`))}`.replace(
+                            'pukul',
+                            '|'
+                          )}{' '}
+                          WIB
+                        </p>
+                      </div>
                     </div>
-                    <p>{item.username}</p>
-                    <p>{item.created_at}</p>
+                  </div>
+                </div>
+              ) : (
+                <div
+                  className="my-5 p-10 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)]"
+                  key={index}
+                >
+                  <div className="flex flex-row items-center gap-5">
+                    <div
+                      className="text-green-400 font-extrabold cursor-pointer"
+                      onClick={() => navigate(`/edit/${item.id}`)}
+                    >
+                      Edit
+                    </div>
+                    <div
+                      className="text-red-400 font-extrabold cursor-pointer"
+                      onClick={() => handleDeletePost(item.id)}
+                    >
+                      Delete
+                    </div>
+                  </div>
+                  <Link to={`/detail/${item.id}`}>
+                    <div className="grid grid-cols-2">
+                      <div className="flex justify-center items-center m-2 border rounded-lg">
+                        <img
+                          src={item.pic}
+                          style={{
+                            height: '280px',
+                            objectFit: 'cover',
+                            width: '450px',
+                          }}
+                          className="rounded-lg"
+                        />
+                      </div>
+                      <div className="col-span-1 flex flex-col justify-center items-center m-2">
+                        <div>
+                          <h1 className="font-bold py-1 mb-3">
+                            {item.title.slice(0, 30)}
+                            {item.title.length > 100 ? (
+                              <span className="font-bold text-blue-300">
+                                ...
+                              </span>
+                            ) : (
+                              ''
+                            )}
+                          </h1>
+                          <div>
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: item.article.slice(0, 100),
+                              }}
+                            ></div>
+                            {item.article.length > 100 ? (
+                              <span className="font-bold text-blue-300">
+                                Read more
+                              </span>
+                            ) : (
+                              ''
+                            )}
+                          </div>
+                          <p className="font-bold mt-10">{item.username}</p>
+                          <p>
+                            {`${new Intl.DateTimeFormat('id-ID', {
+                              weekday: 'long',
+                              day: 'numeric',
+                              month: 'long',
+                              year: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit',
+                            }).format(new Date(`${item.created_at}`))}`.replace(
+                              'pukul',
+                              '|'
+                            )}{' '}
+                            WIB
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </Link>
                 </div>
               );
