@@ -124,7 +124,7 @@ export function EditArticle() {
                 }}
                 className="w-full flex justify-center items-center rounded border-2 my-5"
               >
-                Add Image
+                {/* Add Image */}
               </label>
               <input
                 className="hidden"

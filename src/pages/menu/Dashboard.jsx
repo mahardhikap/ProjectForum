@@ -5,7 +5,12 @@ import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
 import { compare } from 'bcryptjs';
 import { MenuDashboard } from '../../components/MenuDashboard';
-import { faTrash, faPenToSquare, faCircleRight, faCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTrash,
+  faPenToSquare,
+  faCircleRight,
+  faCircleLeft,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export function Dashboard() {
@@ -119,7 +124,14 @@ export function Dashboard() {
                       />
                     </div>
                     <div className="col-span-1 flex flex-col justify-center items-center m-1 md:m-2">
-                      <h1 className="font-bold py-1 mb-3">{item.title}</h1>
+                      <h1 className="font-bold py-1 mb-3">
+                        {item.title.slice(0, 30)}
+                        {item.title.length > 30 ? (
+                          <span className="font-bold">...</span>
+                        ) : (
+                          ''
+                        )}
+                      </h1>
                       <div className="flex items-center justify-center gap-3">
                         <input
                           className="p-3 rounded-lg border outline-none"
@@ -136,7 +148,7 @@ export function Dashboard() {
                           OK
                         </div>
                       </div>
-                      <div className='w-full'>
+                      <div className="w-full">
                         <p className="font-bold mt-10">{item.username}</p>
                         <p>
                           {`${new Intl.DateTimeFormat('id-ID', {
@@ -189,13 +201,11 @@ export function Dashboard() {
                         />
                       </div>
                       <div className="col-span-1 flex flex-col justify-center items-center m-1 md:m-2">
-                        <div className='w-full'>
+                        <div className="w-full">
                           <h1 className="font-bold py-1 mb-3">
                             {item.title.slice(0, 30)}
-                            {item.title.length > 100 ? (
-                              <span className="font-bold text-blue-300">
-                                ...
-                              </span>
+                            {item.title.length > 30 ? (
+                              <span className="font-bold">...</span>
                             ) : (
                               ''
                             )}
@@ -208,7 +218,7 @@ export function Dashboard() {
                             ></div>
                             {item.article.length > 100 ? (
                               <span className="font-bold text-blue-300">
-                                Read more
+                                read more
                               </span>
                             ) : (
                               ''
@@ -248,7 +258,7 @@ export function Dashboard() {
                 className="rounded p-2 text-blue-100 hover:text-blue-300 border-0 ms-3 text-3xl"
                 onClick={() => goToPage(page + 1)}
               >
-                 <FontAwesomeIcon icon={faCircleRight} />
+                <FontAwesomeIcon icon={faCircleRight} />
               </button>
             </div>
           </div>

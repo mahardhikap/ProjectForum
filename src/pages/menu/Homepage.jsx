@@ -51,7 +51,7 @@ export function Homepage() {
   }, [page]);
 
   return (
-    <section className='relative container mx-auto w-11/12 lg:w-3/5'>
+    <section className="relative container mx-auto w-11/12 lg:w-3/5">
       <div className="z-10 absolute">
         <div className="mt-10 p-2 rounded-xl">
           <div className="flex flex-row items-center justify-between font-bold">
@@ -85,7 +85,14 @@ export function Homepage() {
                       />
                     </div>
                     <div className="col-span-1 flex flex-col justify-center items-center m-1 md:m-2">
-                      <h1 className="font-bold py-1 mb-3">{item.title}</h1>
+                      <h1 className="font-bold py-1 mb-3">
+                        {item.title.slice(0, 30)}
+                        {item.title.length > 30 ? (
+                          <span className="font-bold">...</span>
+                        ) : (
+                          ''
+                        )}
+                      </h1>
                       <div className="flex items-center justify-center gap-3">
                         <input
                           className="p-3 rounded-lg border outline-none"
@@ -145,10 +152,8 @@ export function Homepage() {
                         <div className="w-full">
                           <h1 className="font-bold py-1 mb-3">
                             {item.title.slice(0, 30)}
-                            {item.title.length > 100 ? (
-                              <span className="font-bold text-blue-300">
-                                ...
-                              </span>
+                            {item.title.length > 30 ? (
+                              <span className="font-bold">...</span>
                             ) : (
                               ''
                             )}
@@ -161,7 +166,7 @@ export function Homepage() {
                             ></div>
                             {item.article.length > 100 ? (
                               <span className="font-bold text-blue-300">
-                                Read more
+                                read more
                               </span>
                             ) : (
                               ''
@@ -207,7 +212,7 @@ export function Homepage() {
           </div>
         </div>
       </div>
-      <ParticleComponent/>
+      <ParticleComponent />
     </section>
   );
 }
