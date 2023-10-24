@@ -42,6 +42,10 @@ npm run dev
 ```
 You can open http://localhost:5173/ to see the project
 
+## Related Project
+
+https://github.com/mahardhikap/ForumApi
+
 ## Author
 [![github](https://img.shields.io/badge/Github-232b2b?style=for-the-badge&logo=github&logoColor=white)](https://www.github.com/mahardhikap) 
 
