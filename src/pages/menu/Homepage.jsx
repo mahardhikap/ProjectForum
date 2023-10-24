@@ -52,7 +52,7 @@ export function Homepage() {
 
   return (
     <section className="relative container mx-auto w-11/12 lg:w-3/5">
-      <div className="z-10 absolute">
+      <div className="z-10 absolute w-full">
         <div className="mt-10 p-2 rounded-xl">
           <div className="flex flex-row items-center justify-between font-bold">
             <div>HOMEPAGE</div>

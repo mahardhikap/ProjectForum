@@ -39,11 +39,11 @@ export function LoginUser() {
     <section className="h-screen flex flex-col justify-center items-center container mx-auto">
       <ParticleComponent/>
       <div className="z-10 w-full flex justify-center items-center flex-col">
-        <h1 className="text-2xl mb-4 font-bold text-[#808080]">
+        <h1 className="text-2xl mb-4 font-bold">
           LOGIN PROJECT13
         </h1>
         <form
-          className="w-10/12 sm:w-1/3 bg-white shadow-[1px_1px_10px_rgba(0,0,0,0.1)] rounded-lg p-3"
+          className="w-11/12 sm:w-3/5 lg:w-1/3 bg-white shadow-[1px_1px_10px_rgba(0,0,0,0.1)] rounded-lg p-3"
           onSubmit={postData}
         >
           <div>
@@ -51,7 +51,7 @@ export function LoginUser() {
               id="email"
               name="email"
               type="email"
-              className="w-full p-3 outline-none border-2 my-2 rounded-lg"
+              className="w-full p-3 outline-none border my-2 rounded-lg"
               placeholder="Email"
               onChange={onChangeInput}
               defaultValue={inputUser.email}
@@ -60,7 +60,7 @@ export function LoginUser() {
               id="password"
               name="password"
               type="password"
-              className="w-full p-3 outline-none border-2 my-2 rounded-lg"
+              className="w-full p-3 outline-none border my-2 rounded-lg"
               placeholder="Password"
               onChange={onChangeInput}
               defaultValue={inputUser.password}
@@ -69,7 +69,7 @@ export function LoginUser() {
           <div className="flex justify-center items-center">
             <button
               type="submit"
-              className="px-3 py-2 bg-gray-200 rounded-lg font-bold mt-2 text-[#808080]"
+              className="px-3 py-2 w-full md:w-1/2 bg-blue-100 rounded-lg font-bold mt-2"
             >
               Login
             </button>

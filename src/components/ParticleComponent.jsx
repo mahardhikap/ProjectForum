@@ -53,7 +53,7 @@ export function ParticleComponent () {
               color: '#000000',
               distance: 150,
               enable: true,
-              opacity: 1,
+              opacity: 0.3,
               width: 1,
             },
             move: {
@@ -63,7 +63,7 @@ export function ParticleComponent () {
                 default: 'bounce',
               },
               random: false,
-              speed: 6,
+              speed: 4,
               straight: false,
             },
             number: {
@@ -71,10 +71,10 @@ export function ParticleComponent () {
                 enable: true,
                 area: 800,
               },
-              value: 80,
+              value: 50,
             },
             opacity: {
-              value: 0.1,
+              value: 0.5,
             },
             shape: {
               type: 'circle',

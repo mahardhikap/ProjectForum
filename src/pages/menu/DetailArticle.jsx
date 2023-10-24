@@ -35,7 +35,7 @@ export function DetailArticle() {
 
   return (
     <section className="w-11/12 lg:w-3/5 container mx-auto relative">
-      <div className="absolute z-10">
+      <div className="absolute z-10 w-full">
         <div className="shadow-[1px_1px_10px_rgba(0,0,0,0.1)] p-2 rounded-xl bg-white my-10">
           <div className="flex justify-end pb-5 ">
             <Link
