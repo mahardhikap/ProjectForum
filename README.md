@@ -42,6 +42,12 @@ npm run dev
 ```
 You can open http://localhost:5173/ to see the project
 
+## Demo Account
+```
+email: rales41126@tutoreve.com
+password: demo
+```
+
 ## Related Project
 
 https://github.com/mahardhikap/ForumApi
