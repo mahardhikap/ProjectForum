@@ -68,7 +68,7 @@ export function Homepage() {
           <div className="flex flex-row items-center justify-between font-bold mb-2">
             <div
               onClick={() => {
-                navigate('/Homepage');
+                navigate('/homepage');
                 searchToggle();
               }}
               className="cursor-pointer"
