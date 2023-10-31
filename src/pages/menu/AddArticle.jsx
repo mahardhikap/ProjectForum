@@ -68,7 +68,7 @@ export function AddArticle() {
 
   return (
     <section>
-      <div className="container w-11/12 lg:w-10/12 mx-auto my-10">
+      <div className="container w-11/12 lg:w-10/12 mx-auto my-5">
         <h3 className="p-0 m-0">
           Hello,{' '}
           <span className="font-medium">{localStorage.getItem('name_')}</span>!
@@ -78,7 +78,7 @@ export function AddArticle() {
             <MenuDashboard/>
           </div>
           <div className="col-span-2">
-            <div className="bg-blue-100 p-2 rounded-lg mt-10 md:mt-0">
+            <div className="bg-blue-100 p-2 rounded-lg mt-5 md:mt-0">
               <div className="font-bold">POST ARTICLE</div>
             </div>
             <form action="" onSubmit={postArticle}>
@@ -162,7 +162,7 @@ export function AddArticle() {
                   name='post_pass'
                 />
               </div>
-              <div className='my-10'>
+              <div className='my-5'>
                 <button type='submit' className="w-full rounded-lg py-3 bg-blue-500 font-bold text-white">
                   Post Submit
                 </button>

@@ -36,7 +36,7 @@ export function DetailArticle() {
   return (
     <section className="w-11/12 lg:w-3/5 container mx-auto relative">
       <div className="absolute z-10 w-full">
-        <div className="shadow-[1px_1px_10px_rgba(0,0,0,0.1)] p-2 rounded-xl bg-white my-10">
+        <div className="shadow-[1px_1px_10px_rgba(0,0,0,0.1)] p-2 rounded-xl bg-white my-5">
           <div className="flex justify-end pb-5 ">
             <Link
               to={-1}
@@ -48,7 +48,7 @@ export function DetailArticle() {
           <h1 className="text-3xl text-center font-bold">
             {getArticle?.title}
           </h1>
-          <div className="flex justify-center items-center mt-10">
+          <div className="flex justify-center items-center mt-5">
             <img
               src={
                 isPasswordMatch || getArticle?.post_pass === 'undefined'
@@ -59,7 +59,7 @@ export function DetailArticle() {
               alt="Article Cover"
             />
           </div>
-          <div className="mt-5 mb-10 text-center">
+          <div className="mt-5 mb-5 text-center">
             {getArticle
               ? new Intl.DateTimeFormat('id-ID', {
                   weekday: 'long',

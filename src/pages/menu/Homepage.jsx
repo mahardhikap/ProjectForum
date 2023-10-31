@@ -64,7 +64,7 @@ export function Homepage() {
   return (
     <section className="relative container mx-auto w-11/12 lg:w-3/5">
       <div className="z-10 absolute w-full">
-        <div className="mt-10 rounded-xl">
+        <div className="mt-5 rounded-xl">
           <div className="flex flex-row items-center justify-between font-bold mb-2">
             <div
               onClick={() => {
@@ -86,7 +86,7 @@ export function Homepage() {
             clicks={(e) => (e.key === 'Enter' ? searchToggle() : '')}
           />
         </div>
-        <div className="mb-10 rounded-xl">
+        <div className="mb-5 rounded-xl">
           <div>
             {getPostError ? (<ErrorGetData errorTitle={'DATA NOT FOUND'} errorNote={'Try another search'}/>):(
               getPost?.rows?.map((item, index) => {

@@ -76,7 +76,7 @@ export function Dashboard() {
 
   return (
     <section>
-      <div className="container w-11/12 lg:w-10/12 mx-auto my-10">
+      <div className="container w-11/12 lg:w-10/12 mx-auto my-5">
         <h3 className="p-0 m-0">
           Hello,{' '}
           <span className="font-medium">{localStorage.getItem('name_')}</span>!
@@ -86,7 +86,7 @@ export function Dashboard() {
             <MenuDashboard />
           </div>
           <div className="col-span-2">
-            <div className="bg-blue-100 p-2 rounded-lg mt-10 md:mt-0">
+            <div className="bg-blue-100 p-2 rounded-lg mt-5 md:mt-0">
               <div className="font-bold">DASHBOARD</div>
             </div>
             {getPost?.rows?.map((item, index) => {
