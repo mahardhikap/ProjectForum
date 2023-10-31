@@ -7,6 +7,7 @@ import { compare } from 'bcryptjs';
 import { faCircleRight, faCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ParticleComponent } from '../../components/ParticleComponent';
+import { SearchBox } from '../../components/SearchBox';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -34,6 +35,15 @@ export function Homepage() {
     }
   };
 
+  const onChangeSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const searchToggle = () => {
+    dispatch(getAllPost(searchby, search, sortby, sort, page, limit));
+    setSearch('');
+  };
+
   const onChangePassword = (e) => {
     setInputPassword(e.target.value);
   };
@@ -53,22 +63,36 @@ export function Homepage() {
   return (
     <section className="relative container mx-auto w-11/12 lg:w-3/5">
       <div className="z-10 absolute w-full">
-        <div className="mt-10 p-2 rounded-xl">
-          <div className="flex flex-row items-center justify-between font-bold">
-            <div>HOMEPAGE</div>
+        <div className="mt-10 rounded-xl">
+          <div className="flex flex-row items-center justify-between font-bold mb-2">
+            <div
+              onClick={() => {
+                navigate('/Homepage');
+                searchToggle();
+              }}
+              className="cursor-pointer"
+            >
+              HOMEPAGE
+            </div>
             <div onClick={() => navigate('/login')} className="cursor-pointer">
               LOGIN
             </div>
           </div>
+          <SearchBox
+            onchanges={onChangeSearch}
+            values={search}
+            names={'search'}
+            clicks={(e) => (e.key === 'Enter' ? searchToggle() : '')}
+          />
         </div>
-        <div className="mt-5 mb-10 p-2 rounded-xl">
+        <div className="mb-10 rounded-xl">
           <div>
             {getPost?.rows?.map((item, index) => {
               return item.post_pass !== 'undefined' ? (
                 <div
-                  className="my-5 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
+                  className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
                   key={index}
-                  data-aos="fade-right"
+                  data-aos="zoom-in"
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-2">
                     <div className="flex justify-center items-center col-span-1 border rounded-lg m-1 md:m-2">
@@ -131,9 +155,9 @@ export function Homepage() {
                 </div>
               ) : (
                 <div
-                  className="my-5 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
+                  className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
                   key={index}
-                  data-aos="fade-right"
+                  data-aos="zoom-in"
                 >
                   <Link to={`/detail/${item.id}`}>
                     <div className="grid grid-cols-1 lg:grid-cols-2">

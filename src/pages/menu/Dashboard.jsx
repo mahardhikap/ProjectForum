@@ -82,7 +82,7 @@ export function Dashboard() {
           <span className="font-medium">{localStorage.getItem('name_')}</span>!
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 mt-5">
-          <div className="col-span-1 p-0 md:pe-5">
+          <div className="col-span-1 p-0 md:pe-2">
             <MenuDashboard />
           </div>
           <div className="col-span-2">
@@ -92,7 +92,7 @@ export function Dashboard() {
             {getPost?.rows?.map((item, index) => {
               return item.post_pass !== 'undefined' ? (
                 <div
-                  className="my-5 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)]"
+                  className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)]"
                   key={index}
                 >
                   <div className="flex flex-row items-center gap-5">
@@ -170,7 +170,7 @@ export function Dashboard() {
                 </div>
               ) : (
                 <div
-                  className="my-5 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)]"
+                  className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)]"
                   key={index}
                 >
                   <div className="flex flex-row items-center gap-5">

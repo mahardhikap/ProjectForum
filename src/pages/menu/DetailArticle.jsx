@@ -55,7 +55,7 @@ export function DetailArticle() {
                   ? getArticle?.pic
                   : 'https://i.ibb.co/RDfWY1Y/pic-removebg-preview.png'
               }
-              className="w-[400px] h-[250px] object-cover rounded-lg"
+              className="w-[400px] h-[250px] object-cover rounded-lg border"
               alt="Article Cover"
             />
           </div>

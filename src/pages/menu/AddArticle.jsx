@@ -74,7 +74,7 @@ export function AddArticle() {
           <span className="font-medium">{localStorage.getItem('name_')}</span>!
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 mt-5">
-          <div className="col-span-1 p-0 md:pe-5">
+          <div className="col-span-1 p-0 md:pe-2">
             <MenuDashboard/>
           </div>
           <div className="col-span-2">
