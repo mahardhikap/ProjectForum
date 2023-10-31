@@ -136,7 +136,7 @@ export function Homepage() {
                           </div>
                         </div>
                         <div className="w-full">
-                          <p className="font-bold mt-10">{item.username}</p>
+                          <p className="font-bold mt-5">{item.username}</p>
                           <p>
                             {`${new Intl.DateTimeFormat('id-ID', {
                               weekday: 'long',
@@ -198,7 +198,7 @@ export function Homepage() {
                                 ''
                               )}
                             </div>
-                            <p className="font-bold mt-10">{item.username}</p>
+                            <p className="font-bold mt-5">{item.username}</p>
                             <p>
                               {`${new Intl.DateTimeFormat('id-ID', {
                                 weekday: 'long',
