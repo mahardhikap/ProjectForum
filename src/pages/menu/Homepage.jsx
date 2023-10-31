@@ -8,6 +8,7 @@ import { faCircleRight, faCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ParticleComponent } from '../../components/ParticleComponent';
 import { SearchBox } from '../../components/SearchBox';
+import { ErrorGetData } from '../../components/ErrorGetData';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -21,7 +22,7 @@ export function Homepage() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
   const [inputPassword, setInputPassword] = useState('');
-  const { data: getPost } = useSelector((state) => state.getAllPost);
+  const { data: getPost, isError: getPostError } = useSelector((state) => state.getAllPost);
 
   const handlePassword = async (password, id) => {
     const storedHash = password;
@@ -87,83 +88,20 @@ export function Homepage() {
         </div>
         <div className="mb-10 rounded-xl">
           <div>
-            {getPost?.rows?.map((item, index) => {
-              return item.post_pass !== 'undefined' ? (
-                <div
-                  className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
-                  key={index}
-                  data-aos="zoom-in"
-                >
-                  <div className="grid grid-cols-1 lg:grid-cols-2">
-                    <div className="flex justify-center items-center col-span-1 border rounded-lg m-1 md:m-2">
-                      <img
-                        src={
-                          'https://i.ibb.co/RDfWY1Y/pic-removebg-preview.png'
-                        }
-                        style={{
-                          height: '280px',
-                          objectFit: 'cover',
-                          width: '450px',
-                        }}
-                        className="rounded-lg"
-                      />
-                    </div>
-                    <div className="col-span-1 flex flex-col justify-center items-center m-1 md:m-2">
-                      <h1 className="font-bold py-1 mb-3">
-                        {item.title.slice(0, 30)}
-                        {item.title.length > 30 ? (
-                          <span className="font-bold">...</span>
-                        ) : (
-                          ''
-                        )}
-                      </h1>
-                      <div className="flex items-center justify-center gap-3">
-                        <input
-                          className="p-3 rounded-lg border outline-none"
-                          placeholder="Input password"
-                          onChange={onChangePassword}
-                          value={inputPassword}
-                        />
-                        <div
-                          onClick={() =>
-                            handlePassword(item.post_pass, item.id)
-                          }
-                          className="p-3 bg-blue-100 cursor-pointer rounded-lg font-medium hover:bg-blue-300"
-                        >
-                          OK
-                        </div>
-                      </div>
-                      <div className="w-full">
-                        <p className="font-bold mt-10">{item.username}</p>
-                        <p>
-                          {`${new Intl.DateTimeFormat('id-ID', {
-                            weekday: 'long',
-                            day: 'numeric',
-                            month: 'long',
-                            year: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit',
-                          }).format(new Date(`${item.created_at}`))}`.replace(
-                            'pukul',
-                            '|'
-                          )}{' '}
-                          WIB
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div
-                  className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
-                  key={index}
-                  data-aos="zoom-in"
-                >
-                  <Link to={`/detail/${item.id}`}>
+            {getPostError ? (<ErrorGetData errorTitle={'DATA NOT FOUND'} errorNote={'Try another search'}/>):(
+              getPost?.rows?.map((item, index) => {
+                return item.post_pass !== 'undefined' ? (
+                  <div
+                    className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
+                    key={index}
+                    data-aos="zoom-in"
+                  >
                     <div className="grid grid-cols-1 lg:grid-cols-2">
-                      <div className="flex justify-center items-center m-1 md:m-2 border rounded-lg">
+                      <div className="flex justify-center items-center col-span-1 border rounded-lg m-1 md:m-2">
                         <img
-                          src={item.pic}
+                          src={
+                            'https://i.ibb.co/RDfWY1Y/pic-removebg-preview.png'
+                          }
                           style={{
                             height: '280px',
                             objectFit: 'cover',
@@ -173,29 +111,31 @@ export function Homepage() {
                         />
                       </div>
                       <div className="col-span-1 flex flex-col justify-center items-center m-1 md:m-2">
-                        <div className="w-full">
-                          <h1 className="font-bold py-1 mb-3">
-                            {item.title.slice(0, 30)}
-                            {item.title.length > 30 ? (
-                              <span className="font-bold">...</span>
-                            ) : (
-                              ''
-                            )}
-                          </h1>
-                          <div>
-                            <div
-                              dangerouslySetInnerHTML={{
-                                __html: item.article.slice(0, 100),
-                              }}
-                            ></div>
-                            {item.article.length > 100 ? (
-                              <span className="font-bold text-blue-300">
-                                read more
-                              </span>
-                            ) : (
-                              ''
-                            )}
+                        <h1 className="font-bold py-1 mb-3">
+                          {item.title.slice(0, 30)}
+                          {item.title.length > 30 ? (
+                            <span className="font-bold">...</span>
+                          ) : (
+                            ''
+                          )}
+                        </h1>
+                        <div className="flex items-center justify-center gap-3">
+                          <input
+                            className="p-3 rounded-lg border outline-none"
+                            placeholder="Input password"
+                            onChange={onChangePassword}
+                            value={inputPassword}
+                          />
+                          <div
+                            onClick={() =>
+                              handlePassword(item.post_pass, item.id)
+                            }
+                            className="p-3 bg-blue-100 cursor-pointer rounded-lg font-medium hover:bg-blue-300"
+                          >
+                            OK
                           </div>
+                        </div>
+                        <div className="w-full">
                           <p className="font-bold mt-10">{item.username}</p>
                           <p>
                             {`${new Intl.DateTimeFormat('id-ID', {
@@ -214,11 +154,74 @@ export function Homepage() {
                         </div>
                       </div>
                     </div>
-                  </Link>
-                </div>
-              );
-            })}
-            <div className="my-5 text-center font-bold">
+                  </div>
+                ) : (
+                  <div
+                    className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
+                    key={index}
+                    data-aos="zoom-in"
+                  >
+                    <Link to={`/detail/${item.id}`}>
+                      <div className="grid grid-cols-1 lg:grid-cols-2">
+                        <div className="flex justify-center items-center m-1 md:m-2 border rounded-lg">
+                          <img
+                            src={item.pic}
+                            style={{
+                              height: '280px',
+                              objectFit: 'cover',
+                              width: '450px',
+                            }}
+                            className="rounded-lg"
+                          />
+                        </div>
+                        <div className="col-span-1 flex flex-col justify-center items-center m-1 md:m-2">
+                          <div className="w-full">
+                            <h1 className="font-bold py-1 mb-3">
+                              {item.title.slice(0, 30)}
+                              {item.title.length > 30 ? (
+                                <span className="font-bold">...</span>
+                              ) : (
+                                ''
+                              )}
+                            </h1>
+                            <div>
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: item.article.slice(0, 100),
+                                }}
+                              ></div>
+                              {item.article.length > 100 ? (
+                                <span className="font-bold text-blue-300">
+                                  read more
+                                </span>
+                              ) : (
+                                ''
+                              )}
+                            </div>
+                            <p className="font-bold mt-10">{item.username}</p>
+                            <p>
+                              {`${new Intl.DateTimeFormat('id-ID', {
+                                weekday: 'long',
+                                day: 'numeric',
+                                month: 'long',
+                                year: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                              }).format(new Date(`${item.created_at}`))}`.replace(
+                                'pukul',
+                                '|'
+                              )}{' '}
+                              WIB
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                );
+              })
+            )}
+            <div className="my-5 font-bold flex items-center justify-center">
               <button
                 className="rounded p-2 text-blue-100 hover:text-blue-300 border-0 me-3 text-3xl"
                 onClick={() => goToPage(page - 1)}

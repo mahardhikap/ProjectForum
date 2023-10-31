@@ -246,7 +246,7 @@ export function Dashboard() {
                 </div>
               );
             })}
-            <div className="my-5 text-center font-bold">
+            <div className="my-5 font-bold flex items-center justify-center">
               <button
                 className="rounded p-2 text-blue-100 hover:text-blue-300 border-0 me-3 text-3xl"
                 onClick={() => goToPage(page - 1)}
