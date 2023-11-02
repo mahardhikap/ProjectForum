@@ -53,7 +53,7 @@ export function ParticleComponent () {
               color: '#000000',
               distance: 150,
               enable: true,
-              opacity: 0.3,
+              opacity: 0.09,
               width: 1,
             },
             move: {
@@ -63,7 +63,7 @@ export function ParticleComponent () {
                 default: 'bounce',
               },
               random: false,
-              speed: 4,
+              speed: 1,
               straight: false,
             },
             number: {
@@ -71,16 +71,16 @@ export function ParticleComponent () {
                 enable: true,
                 area: 800,
               },
-              value: 50,
+              value: 30,
             },
             opacity: {
-              value: 0.5,
+              value: 0.09,
             },
             shape: {
               type: 'circle',
             },
             size: {
-              value: { min: 1, max: 5 },
+              value: { min: 2, max: 4 },
             },
           },
           detectRetina: true,

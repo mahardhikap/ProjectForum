@@ -69,9 +69,9 @@ export function LoginUser() {
           <div className="flex justify-center items-center">
             <button
               type="submit"
-              className="px-3 py-2 w-full md:w-1/2 bg-blue-100 rounded-lg font-bold mt-2"
+              className="px-3 py-3 w-full bg-gray-400 hover:bg-gray-500 text-white rounded-lg font-bold mt-2"
             >
-              Login
+              LOGIN
             </button>
           </div>
         </form>
