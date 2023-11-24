@@ -15,7 +15,7 @@ function App() {
       <>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Navigate to="/homepage" replace={true} />} />
+            <Route path="/" element={<Navigate to="/blog" replace={true} />} />
             <Route path="/login" element={<LoginUser />}/>
             <Route path="/dashboard" element={<AuthChecker><Dashboard /></AuthChecker>}/>
             <Route path="/detail/:id" element={<DetailArticle />}/>
