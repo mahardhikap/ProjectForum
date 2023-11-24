@@ -149,7 +149,18 @@ export function Dashboard() {
                         </div>
                       </div>
                       <div className="w-full">
-                        <p className="font-bold mt-5">{item.username}</p>
+                        <div className="flex flex-row items-center gap-3 mt-5">
+                          <div>
+                            <img
+                              src={item.photo}
+                              alt="photo-profile"
+                              className="rounded-full max-w-[30px] max-h-[30px]"
+                            />
+                          </div>
+                          <div className="font-bold text-black">
+                            {item.username}
+                          </div>
+                        </div>
                         <p>
                           {`${new Intl.DateTimeFormat('id-ID', {
                             weekday: 'long',
@@ -224,7 +235,18 @@ export function Dashboard() {
                               ''
                             )}
                           </div>
-                          <p className="font-bold mt-5">{item.username}</p>
+                          <div className="flex flex-row items-center gap-3 mt-5">
+                              <div>
+                                <img
+                                  src={item.photo}
+                                  alt="photo-profile"
+                                  className="rounded-full max-w-[30px] max-h-[30px]"
+                                />
+                              </div>
+                              <div className="font-bold text-black">
+                                {item.username}
+                              </div>
+                            </div>
                           <p>
                             {`${new Intl.DateTimeFormat('id-ID', {
                               weekday: 'long',

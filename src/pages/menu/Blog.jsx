@@ -6,13 +6,13 @@ import Swal from 'sweetalert2';
 import { compare } from 'bcryptjs';
 import { faCircleRight, faCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ParticleComponent } from '../../components/ParticleComponent';
 import { SearchBox } from '../../components/SearchBox';
 import { ErrorGetData } from '../../components/ErrorGetData';
+import { TopNavbar } from '../../components/TopNavbar';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-export function Homepage() {
+export function Blog() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchby, setSearchby] = useState('title');
@@ -22,7 +22,9 @@ export function Homepage() {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
   const [inputPassword, setInputPassword] = useState('');
-  const { data: getPost, isError: getPostError } = useSelector((state) => state.getAllPost);
+  const { data: getPost, isError: getPostError } = useSelector(
+    (state) => state.getAllPost
+  );
 
   const handlePassword = async (password, id) => {
     const storedHash = password;
@@ -62,22 +64,11 @@ export function Homepage() {
   }, [page]);
 
   return (
-    <section className="relative container mx-auto w-11/12 lg:w-3/5">
-      <div className="z-10 absolute w-full">
+    <section className="container mx-auto w-11/12 lg:w-3/5">
+      <div className="z-10 w-full">
         <div className="mt-5 rounded-xl shadow-[1px_1px_10px_rgba(0,0,0,0.1)] p-3 bg-white">
-          <div className="flex flex-row items-center justify-between font-bold mb-2">
-            <div
-              onClick={() => {
-                navigate('/homepage');
-                searchToggle();
-              }}
-              className="cursor-pointer"
-            >
-              HOMEPAGE
-            </div>
-            <div onClick={() => navigate('/login')} className="cursor-pointer">
-              LOGIN
-            </div>
+          <div onClick={() => searchToggle()}>
+            <TopNavbar />
           </div>
           <SearchBox
             onchanges={onChangeSearch}
@@ -88,7 +79,12 @@ export function Homepage() {
         </div>
         <div className="mb-5 rounded-xl">
           <div>
-            {getPostError ? (<ErrorGetData errorTitle={'DATA NOT FOUND'} errorNote={'Try another search'}/>):(
+            {getPostError ? (
+              <ErrorGetData
+                errorTitle={'DATA NOT FOUND'}
+                errorNote={'Try another search'}
+              />
+            ) : (
               getPost?.rows?.map((item, index) => {
                 return item.post_pass !== 'undefined' ? (
                   <div
@@ -136,7 +132,18 @@ export function Homepage() {
                           </div>
                         </div>
                         <div className="w-full">
-                          <p className="font-bold mt-5">{item.username}</p>
+                        <div className="flex flex-row items-center gap-3 mt-5">
+                              <div>
+                                <img
+                                  src={item.photo}
+                                  alt="photo-profile"
+                                  className="rounded-full max-w-[30px] max-h-[30px]"
+                                />
+                              </div>
+                              <div className="font-bold">
+                                {item.username}
+                              </div>
+                            </div>
                           <p>
                             {`${new Intl.DateTimeFormat('id-ID', {
                               weekday: 'long',
@@ -198,7 +205,18 @@ export function Homepage() {
                                 ''
                               )}
                             </div>
-                            <p className="font-bold mt-5">{item.username}</p>
+                            <div className="flex flex-row items-center gap-3 mt-5">
+                              <div>
+                                <img
+                                  src={item.photo}
+                                  alt="photo-profile"
+                                  className="rounded-full max-w-[30px] max-h-[30px]"
+                                />
+                              </div>
+                              <div className="font-bold text-black">
+                                {item.username}
+                              </div>
+                            </div>
                             <p>
                               {`${new Intl.DateTimeFormat('id-ID', {
                                 weekday: 'long',
@@ -207,10 +225,9 @@ export function Homepage() {
                                 year: 'numeric',
                                 hour: '2-digit',
                                 minute: '2-digit',
-                              }).format(new Date(`${item.created_at}`))}`.replace(
-                                'pukul',
-                                '|'
-                              )}{' '}
+                              }).format(
+                                new Date(`${item.created_at}`)
+                              )}`.replace('pukul', '|')}{' '}
                               WIB
                             </p>
                           </div>
@@ -239,7 +256,6 @@ export function Homepage() {
           </div>
         </div>
       </div>
-      <ParticleComponent />
     </section>
   );
 }

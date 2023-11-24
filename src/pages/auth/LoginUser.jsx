@@ -3,7 +3,6 @@ import { login, cleanLogin } from '../../redux/action/user';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { ParticleComponent } from '../../components/ParticleComponent';
 
 export function LoginUser() {
   const navigate = useNavigate();
@@ -37,7 +36,6 @@ export function LoginUser() {
 
   return (
     <section className="h-screen flex flex-col justify-center items-center container mx-auto">
-      <ParticleComponent/>
       <div className="z-10 w-full flex justify-center items-center flex-col">
         <h1 className="text-2xl mb-4 font-bold">
           LOGIN PROJECT13

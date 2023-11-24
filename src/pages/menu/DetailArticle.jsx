@@ -5,7 +5,6 @@ import { getDetailArticle } from '../../redux/action/menu';
 import { compare } from 'bcryptjs';
 import { faRectangleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ParticleComponent } from '../../components/ParticleComponent';
 
 export function DetailArticle() {
   const dispatch = useDispatch();
@@ -15,6 +14,7 @@ export function DetailArticle() {
 
   useEffect(() => {
     dispatch(getDetailArticle(id));
+    window.scrollTo(0,0)
   }, [id]);
 
   useEffect(() => {
@@ -34,8 +34,8 @@ export function DetailArticle() {
   }, [getArticle]);
 
   return (
-    <section className="w-11/12 lg:w-3/5 container mx-auto relative">
-      <div className="absolute z-10 w-full">
+    <section className="w-11/12 lg:w-3/5 container mx-auto">
+      <div className="z-10 w-full">
         <div className="shadow-[1px_1px_10px_rgba(0,0,0,0.1)] p-2 rounded-xl bg-white my-5">
           <div className="flex justify-end pb-5 ">
             <Link
@@ -59,20 +59,30 @@ export function DetailArticle() {
               alt="Article Cover"
             />
           </div>
-          <div className="mt-5 mb-5 text-center">
-            {getArticle
-              ? new Intl.DateTimeFormat('id-ID', {
-                  weekday: 'long',
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                })
-                  .format(new Date(getArticle.created_at))
-                  .replace('pukul', '|')
-              : null}{' '}
-            WIB | {getArticle?.username}
+          <div className='mt-3 mb-14'>
+            <div className="flex flex-row items-center justify-center gap-3 font-bold">
+              <img
+                src={getArticle?.photo}
+                alt="photo-profile"
+                className="rounded-full max-w-[30px] max-h-[30px]"
+              />{' '}
+              {getArticle?.username}
+            </div>
+            <div className="text-center">
+              {getArticle
+                ? new Intl.DateTimeFormat('id-ID', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })
+                    .format(new Date(getArticle.created_at))
+                    .replace('pukul', '|')
+                : null}{' '}
+              WIB
+            </div>
           </div>
           <div>
             {isPasswordMatch || getArticle?.post_pass === 'undefined' ? (
@@ -85,7 +95,6 @@ export function DetailArticle() {
           </div>
         </div>
       </div>
-      <ParticleComponent />
     </section>
   );
 }

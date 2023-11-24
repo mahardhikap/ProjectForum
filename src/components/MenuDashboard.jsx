@@ -27,7 +27,7 @@ export function MenuDashboard() {
         Swal.fire('Logout success!', '', 'success').then(() => {
           localStorage.clear();
           dispatch(cleanLogin());
-          navigate('/homepage');
+          navigate('/blog');
         });
       }
     });
