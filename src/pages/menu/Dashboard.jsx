@@ -75,7 +75,7 @@ export function Dashboard() {
   }, [page]);
 
   return (
-    <section>
+    <section className='bg-gray-50 p-1'>
       <div className="container w-11/12 lg:w-10/12 mx-auto my-5">
         <h3 className="p-0 m-0">
           Hello,{' '}
@@ -92,7 +92,7 @@ export function Dashboard() {
             {getPost?.rows?.map((item, index) => {
               return item.post_pass !== 'undefined' ? (
                 <div
-                  className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)]"
+                  className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
                   key={index}
                 >
                   <div className="flex flex-row items-center gap-5">
@@ -181,7 +181,7 @@ export function Dashboard() {
                 </div>
               ) : (
                 <div
-                  className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)]"
+                  className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
                   key={index}
                 >
                   <div className="flex flex-row items-center gap-5">

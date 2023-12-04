@@ -35,7 +35,7 @@ export function LoginUser() {
   }, [data, isError, errorMessage]);
 
   return (
-    <section className="h-screen flex flex-col justify-center items-center container mx-auto">
+    <section className="h-screen flex flex-col justify-center items-center container mx-auto bg-gray-50">
       <div className="z-10 w-full flex justify-center items-center flex-col">
         <h1 className="text-2xl mb-4 font-bold">
           LOGIN PROJECT13

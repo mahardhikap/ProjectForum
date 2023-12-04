@@ -67,7 +67,7 @@ export function AddArticle() {
   }, [data, isError]);
 
   return (
-    <section>
+    <section className='bg-gray-50 p-1'>
       <div className="container w-11/12 lg:w-10/12 mx-auto my-5">
         <h3 className="p-0 m-0">
           Hello,{' '}
@@ -85,7 +85,7 @@ export function AddArticle() {
               <label
                 htmlFor="file"
                 style={{
-                  backgroundImage: `url(${image && inputArticle.pic || 'https://i.ibb.co/M2JSRmW/noimage.png'})`,
+                  backgroundImage: `url(${image && inputArticle.pic || 'https://res.cloudinary.com/dxao06apr/image/upload/v1701688202/file-upload/noimage_o1wkux.png'})`,
                   backgroundPosition: 'center',
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
