@@ -75,7 +75,7 @@ export function Dashboard() {
   }, [page]);
 
   return (
-    <section className='bg-gray-50 p-1'>
+    <section>
       <div className="container w-11/12 lg:w-10/12 mx-auto my-5">
         <h3 className="p-0 m-0">
           Hello,{' '}

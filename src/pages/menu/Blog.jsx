@@ -64,7 +64,7 @@ export function Blog() {
   }, [page]);
 
   return (
-    <section className="bg-gray-50 p-1">
+    <section>
       <div className="container mx-auto w-11/12 lg:w-3/5">
         <div className="mt-5 rounded-xl shadow-[1px_1px_10px_rgba(0,0,0,0.1)] p-3 bg-white">
           <div onClick={() => searchToggle()}>
