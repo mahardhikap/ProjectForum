@@ -9,6 +9,13 @@ import editArticle from "./editArticle";
 import editProfile from "./editProfile";
 import getUserByToken from "./getUserByToken";
 import getAllPost from "./getAllPost";
+import addBiodata from "./addBiodata";
+import getBiodata from "./getBiodata";
+import addPorto from "./addPorto";
+import getPorto from "./getPorto";
+import editPorto from "./editPorto";
+import getDetailPorto from "./getDetailPorto";
+import deletePorto from "./deletePorto";
 
 
 const rootReducers = combineReducers({
@@ -21,7 +28,14 @@ const rootReducers = combineReducers({
     editArticle,
     editProfile,
     getUserByToken,
-    getAllPost
+    getAllPost,
+    addBiodata,
+    getBiodata,
+    addPorto,
+    getPorto,
+    editPorto,
+    getDetailPorto,
+    deletePorto
 })
 
 export default rootReducers

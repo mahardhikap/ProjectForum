@@ -102,3 +102,124 @@ export const getAllPost = (searchby, search, sortby, sort, page, limit) => async
     console.log('error get all post', error);
   }
 };
+
+export const addBiodata = (data) => async (dispatch) => {
+  try {
+    dispatch({ type: 'POST_BIODATA_PENDING' });
+    const result = await axios.post(`${url}/addbiodata`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token_')}`,
+      },
+    });
+    dispatch({ payload: result.data.data, type: 'POST_BIODATA_SUCCESS' });
+  } catch (error) {
+    dispatch({ payload: error.response.data, type: 'POST_BIODATA_FAILED' });
+    console.log('error post biodata', error);
+  }
+};
+
+export const cleanAddBiodata = () => async (dispatch) => {
+  try {
+    dispatch({ type: 'POST_BIODATA_CLEAN' });
+  } catch (error) {
+    console.log('error clean post biodata', error);
+  }
+};
+
+export const getBiodata = () => async (dispatch) => {
+  try {
+    dispatch({ type: 'GET_BIODATA_PENDING' });
+    const result = await axios.get(
+      `${url}/biodata`
+    );
+    dispatch({ payload: result.data.data, type: 'GET_BIODATA_SUCCESS' });
+  } catch (error) {
+    dispatch({ payload: error.response.data, type: 'GET_BIODATA_FAILED' });
+    console.log('error get biodata', error);
+  }
+};
+
+export const addPorto = (data) => async (dispatch) => {
+  try {
+    dispatch({ type: 'POST_PORTO_PENDING' });
+    const result = await axios.post(`${url}/addporto`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token_')}`,
+      },
+    });
+    dispatch({ payload: result.data.data, type: 'POST_PORTO_SUCCESS' });
+  } catch (error) {
+    dispatch({ payload: error.response.data, type: 'POST_PORTO_FAILED' });
+    console.log('error post portfolio', error);
+  }
+};
+
+export const cleanAddPorto = () => async (dispatch) => {
+  try {
+    dispatch({ type: 'POST_PORTO_CLEAN' });
+  } catch (error) {
+    console.log('error clean post portfolio', error);
+  }
+};
+
+export const getPorto = () => async (dispatch) => {
+  try {
+    dispatch({ type: 'GET_PORTO_PENDING' });
+    const result = await axios.get(
+      `${url}/portfolio`
+    );
+    dispatch({ payload: result.data.data, type: 'GET_PORTO_SUCCESS' });
+  } catch (error) {
+    dispatch({ payload: error.response.data, type: 'GET_PORTO_FAILED' });
+    console.log('error get portfolio', error);
+  }
+};
+
+export const editPorto = (id, data) => async (dispatch) => {
+  try {
+    dispatch({ type: 'EDIT_PORTO_PENDING' });
+    const result = await axios.put(`${url}/editporto/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token_')}`,
+      },
+    });
+    dispatch({ payload: result.data.data, type: 'EDIT_PORTO_SUCCESS' });
+  } catch (error) {
+    dispatch({ payload: error.response.data, type: 'EDIT_PORTO_FAILED' });
+    console.log('error edit portfolio', error);
+  }
+};
+
+export const cleanEditPorto = () => async (dispatch) => {
+  try {
+    dispatch({ type: 'EDIT_PORTO_CLEAN' });
+  } catch (error) {
+    console.log('error clean edit portfolio', error);
+  }
+};
+
+export const getDetailPorto = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: 'DETAIL_PORTO_PENDING' });
+    const result = await axios.get(`${url}/portfolio/${id}`);
+    dispatch({ payload: result.data.data, type: 'DETAIL_PORTO_SUCCESS' });
+  } catch (error) {
+    dispatch({ payload: error.response.data, type: 'DETAIL_PORTO_FAILED' });
+    console.log('error get detail portfolio', error);
+  }
+};
+
+export const deletePorto = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: 'DELETE_PORTO_PENDING' });
+    const result = await axios.delete(`${url}/deleteporto/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token_')}`,
+      },
+    });
+    dispatch({ payload: result.data.data, type: 'DELETE_PORTO_SUCCESS' });
+  } catch (error) {
+    dispatch({ payload: error.response.data, type: 'DELETE_PORTO_FAILED' });
+    console.log('error delete portfolio', error);
+  }
+};

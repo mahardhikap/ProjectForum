@@ -64,19 +64,19 @@ export function Blog() {
   }, [page]);
 
   return (
-    <section>
-      <div className="container mx-auto w-11/12 lg:w-3/5">
-        <div className="mt-5 rounded-xl shadow-[1px_1px_10px_rgba(0,0,0,0.1)] p-3 bg-white">
-          <div onClick={() => searchToggle()}>
-            <TopNavbar />
-          </div>
-          <SearchBox
-            onchanges={onChangeSearch}
-            values={search}
-            names={'search'}
-            clicks={(e) => (e.key === 'Enter' ? searchToggle() : '')}
-          />
+    <section className="container mx-auto w-11/12 lg:w-3/5">
+      <div className="mt-5 rounded-xl shadow-[1px_1px_10px_rgba(0,0,0,0.1)] p-3 bg-white">
+        <div onClick={() => searchToggle()}>
+          <TopNavbar />
         </div>
+        <SearchBox
+          onchanges={onChangeSearch}
+          values={search}
+          names={'search'}
+          clicks={(e) => (e.key === 'Enter' ? searchToggle() : '')}
+        />
+      </div>
+      <div>
         <div className="mb-5 rounded-xl">
           <div>
             {getPostError ? (
@@ -132,18 +132,16 @@ export function Blog() {
                           </div>
                         </div>
                         <div className="w-full">
-                        <div className="flex flex-row items-center gap-3 mt-5">
-                              <div>
-                                <img
-                                  src={item.photo}
-                                  alt="photo-profile"
-                                  className="rounded-full max-w-[30px] max-h-[30px]"
-                                />
-                              </div>
-                              <div className="font-bold">
-                                {item.username}
-                              </div>
+                          <div className="flex flex-row items-center gap-3 mt-5">
+                            <div>
+                              <img
+                                src={item.photo}
+                                alt="photo-profile"
+                                className="rounded-full max-w-[30px] max-h-[30px]"
+                              />
                             </div>
+                            <div className="font-bold">{item.username}</div>
+                          </div>
                           <p>
                             {`${new Intl.DateTimeFormat('id-ID', {
                               weekday: 'long',

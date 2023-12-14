@@ -164,7 +164,7 @@ export function AddArticle() {
               </div>
               <div className='my-5'>
                 <button type='submit' className="w-full rounded-lg py-3 bg-blue-500 font-bold text-white">
-                  Post Submit
+                  Post Article
                 </button>
               </div>
             </form>

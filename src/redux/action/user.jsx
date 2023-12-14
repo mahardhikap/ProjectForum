@@ -20,6 +20,7 @@ export const login = (data) => async (dispatch) => {
     localStorage.setItem('name_', result.data.data.username);
     localStorage.setItem('token_', result.data.data.token);
     localStorage.setItem('photo_', result.data.data.photo);
+    localStorage.setItem('roles_', result.data.data.roles);
     dispatch({ payload: result.data, type: 'LOGIN_SUCCESS' });
   } catch (error) {
     dispatch({ payload: error.response.data, type: 'LOGIN_FAILED' });

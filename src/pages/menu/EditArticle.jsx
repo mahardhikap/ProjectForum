@@ -20,7 +20,7 @@ export function EditArticle() {
     pic:'',
   })
   const { data:dataArticle } = useSelector(state => state.getDetailArticle);
-  const { data, isError, isLoading} = useSelector(state => state.editArticle)
+  const { data, isError} = useSelector(state => state.editArticle)
 
   const postEditArticle = (e) => {
     e.preventDefault();

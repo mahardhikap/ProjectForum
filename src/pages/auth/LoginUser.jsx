@@ -38,7 +38,7 @@ export function LoginUser() {
     <section className="h-screen flex flex-col justify-center items-center container mx-auto bg-gray-50">
       <div className="z-10 w-full flex justify-center items-center flex-col">
         <h1 className="text-2xl mb-4 font-bold">
-          LOGIN PROJECT13
+          LOGIN
         </h1>
         <form
           className="w-11/12 sm:w-3/5 lg:w-1/3 bg-white shadow-[1px_1px_10px_rgba(0,0,0,0.1)] rounded-lg p-3"

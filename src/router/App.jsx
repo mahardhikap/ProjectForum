@@ -7,7 +7,13 @@ import { AddArticle } from '../pages/menu/AddArticle';
 import { EditArticle } from '../pages/menu/EditArticle';
 import { EditProfile } from '../pages/menu/EditProfile';
 import { Blog } from '../pages/menu/Blog';
-import { About } from '../pages/menu/About';
+import { AddBiodata } from '../pages/menu/AddBiodata';
+import { DetailBiodata } from '../pages/menu/DetailBiodata';
+import { AddPorto } from '../pages/menu/AddPorto';
+import { ListPorto } from '../pages/menu/ListPorto';
+import { EditPorto } from '../pages/menu/EditPorto';
+import { DetailPorto } from '../pages/menu/DetailPorto';
+import { Home } from '../pages/menu/Home';
 import NotFound from '../components/NotFound';
 
 function App() {
@@ -15,7 +21,7 @@ function App() {
       <>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Navigate to="/blog" replace={true} />} />
+            <Route path="/" element={<Navigate to="/home" replace={true} />} />
             <Route path="/login" element={<LoginUser />}/>
             <Route path="/dashboard" element={<AuthChecker><Dashboard /></AuthChecker>}/>
             <Route path="/detail/:id" element={<DetailArticle />}/>
@@ -23,7 +29,13 @@ function App() {
             <Route path="/edit/:id" element={<AuthChecker><EditArticle /></AuthChecker>}/>
             <Route path="/profile/:id" element={<AuthChecker><EditProfile /></AuthChecker>}/>
             <Route path="/blog" element={<Blog />}/>
-            <Route path="/about" element={<About />}/>
+            <Route path="/updatebiodata" element={<AuthChecker><AddBiodata /></AuthChecker>}/>
+            <Route path="/biodata" element={<DetailBiodata />}/>
+            <Route path="/addporto" element={<AuthChecker><AddPorto /></AuthChecker>}/>
+            <Route path="/listporto" element={<AuthChecker><ListPorto /></AuthChecker>}/>
+            <Route path="/editporto/:id" element={<AuthChecker><EditPorto /></AuthChecker>}/>
+            <Route path="/detailporto/:id" element={<DetailPorto />}/>
+            <Route path="/home" element={<Home />}/>
             <Route path="*" element={<NotFound/>} />
             {/* <Route path="/bookmarked" element={<AuthChecker><Bookmarked /></AuthChecker>} />
             <Route path="/liked" element={<AuthChecker><Liked /></AuthChecker>} />

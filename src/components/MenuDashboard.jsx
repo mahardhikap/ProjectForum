@@ -74,6 +74,33 @@ export function MenuDashboard() {
             Edit Profile
           </div>
         </Link>
+        <Link to={`/updatebiodata`} className={`${localStorage.getItem('roles_') !== 'admin' ? 'hidden' : 'block'}`}>
+          <div
+            className={`font-medium my-2 ${
+              activeMenu === `/updatebiodata` ? 'bg-blue-300' : 'bg-blue-100'
+            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-blue-300`}
+          >
+            Biodata
+          </div>
+        </Link>
+        <Link to={`/addporto`} className={`${localStorage.getItem('roles_') !== 'admin' ? 'hidden' : 'block'}`}>
+          <div
+            className={`font-medium my-2 ${
+              activeMenu === `/addporto` ? 'bg-blue-300' : 'bg-blue-100'
+            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-blue-300`}
+          >
+            Post Portfolio
+          </div>
+        </Link>
+        <Link to={`/listporto`} className={`${localStorage.getItem('roles_') !== 'admin' ? 'hidden' : 'block'}`}>
+          <div
+            className={`font-medium my-2 ${
+              activeMenu === `/listporto` ? 'bg-blue-300' : 'bg-blue-100'
+            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-blue-300`}
+          >
+            List Portfolio
+          </div>
+        </Link>
         <div
           className="font-medium my-2 bg-blue-100 hover:bg-red-500 rounded-md px-2 py-2 my-2 text-black"
           onClick={() => handleLogOut()}
