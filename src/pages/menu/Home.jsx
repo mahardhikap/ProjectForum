@@ -19,39 +19,31 @@ export function Home() {
   }, []);
 
   return (
-    <section className="w-11/12 lg:w-1/2 mx-auto container h-screen flex justify-center items-center">
+    <section className="w-full sm:w-11/12 lg:w-1/2 mx-auto container h-screen flex justify-center items-center">
       <div className="w-full">
-        <div className="flex flex-row justify-end font-medium cursor-pointer gap-3">
-          <div onClick={() => navigate('/blog')} className="hover:underline">
-            Blog
-          </div>
-          <div onClick={() => navigate('/login')} className="hover:underline">
-            Login
-          </div>
-        </div>
-        <div className="p-2 rounded-xl bg-white my-5 w-full">
+        <div className="p-2 rounded-xl bg-white flex items-center sm:my-5 w-full h-screen sm:h-auto">
           <div className="flex flex-col lg:flex-row items-center">
             <div className="flex justify-center items-center w-full">
               <img
                 src={data?.biodata?.photo}
                 alt="profile"
-                className="rounded-full border border-2 w-32 h-32 object-cover"
+                className="rounded-full border border-2 w-36 h-36 object-cover"
               />
             </div>
-            <div className="flex flex-col gap-2 ms-0 mt-3 lg:ms-5 lg:mt-0">
+            <div className="flex flex-col gap-1 ms-0 mt-3 lg:ms-5 lg:mt-0">
               <div>
                 Hello, I'm{' '}
-                <span className="bg-yellow-50 p-1 font-medium rounded-lg">
+                <span className="px-1 font-medium rounded-lg">
                   {data?.biodata?.fullname}
                 </span>
               </div>
               <div>
                 A{' '}
-                <span className="bg-yellow-50 p-1 font-medium rounded-lg">
+                <span className="px-1 font-medium rounded-lg">
                   Fullstack Web Developer
                 </span>
               </div>
-              <div className="flex flex-row flex-wrap gap-2">
+              <div className="flex flex-row flex-wrap gap-2 my-2">
                 {data?.biodata?.skill?.split(',').map((item, index) => {
                   return (
                     <div
@@ -110,7 +102,20 @@ export function Home() {
                   </a>
                 </div>
               </div>
-              <div className='cursor-pointer font-medium text-blue-300 hover:text-blue-400' onClick={()=> navigate('/biodata')}>more detail &rarr;</div>
+              <div className="flex flex-row justify-between mt-10">
+                <div
+                  className="cursor-pointer font-medium text-blue-300 hover:text-blue-400"
+                  onClick={() => navigate('/blog')}
+                >
+                  &larr;my blog
+                </div>
+                <div
+                  className="cursor-pointer font-medium text-blue-300 hover:text-blue-400"
+                  onClick={() => navigate('/biodata')}
+                >
+                  my self &rarr;
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -5,10 +5,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { compare } from 'bcryptjs';
 import { faCircleRight, faCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faRectangleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { SearchBox } from '../../components/SearchBox';
 import { ErrorGetData } from '../../components/ErrorGetData';
-import { TopNavbar } from '../../components/TopNavbar';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -65,16 +65,23 @@ export function Blog() {
 
   return (
     <section className="container mx-auto w-11/12 lg:w-3/5">
-      <div className="mt-5 rounded-xl p-3 bg-white">
-        <div onClick={() => searchToggle()}>
-          <TopNavbar />
+      <div className="mt-5 rounded-xl p-3 bg-white flex justify-between">
+        <div className='w-full'>
+          <SearchBox
+            onchanges={onChangeSearch}
+            values={search}
+            names={'search'}
+            clicks={(e) => (e.key === 'Enter' ? searchToggle() : '')}
+          />
         </div>
-        <SearchBox
-          onchanges={onChangeSearch}
-          values={search}
-          names={'search'}
-          clicks={(e) => (e.key === 'Enter' ? searchToggle() : '')}
-        />
+        <div>
+          <Link
+            to={-1}
+            className="no-underline text-red-900 hover:text-red-500 cursor-pointer text-3xl"
+          >
+            <FontAwesomeIcon icon={faRectangleXmark} />
+          </Link>
+        </div>
       </div>
       <div>
         <div className="mb-5 rounded-xl">
