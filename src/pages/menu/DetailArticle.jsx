@@ -35,8 +35,8 @@ export function DetailArticle() {
 
   return (
     <section>
-      <div className="w-11/12 lg:w-3/5 container mx-auto">
-        <div className="p-2 rounded-xl bg-white my-5">
+      <div className="w-full sm:w-11/12 lg:w-3/5 container mx-auto">
+        <div className="p-2 rounded-none sm:rounded-xl bg-white my-0 sm:my-5">
           <div className="flex justify-end pb-5 ">
             <Link
               to={-1}
