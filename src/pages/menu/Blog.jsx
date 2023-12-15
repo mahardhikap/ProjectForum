@@ -58,14 +58,14 @@ export function Blog() {
   };
 
   useEffect(() => {
-    AOS.init();
+    // AOS.init();
     dispatch(getAllPost(searchby, search, sortby, sort, page, limit));
     window.scrollTo(0, 0);
   }, [page]);
 
   return (
-    <section className="container mx-auto w-full sm:w-11/12 lg:w-3/5">
-      <div className="mt-0 sm:mt-5 rounded-none sm:rounded-xl p-3 bg-white flex justify-between">
+    <section className="container mx-auto w-11/12 lg:w-3/5">
+      <div className="mt-5 rounded-xl p-3 bg-white flex justify-between">
         <div className='w-full'>
           <SearchBox
             onchanges={onChangeSearch}
@@ -84,7 +84,7 @@ export function Blog() {
         </div>
       </div>
       <div>
-        <div className="mb-5 rounded-none sm:rounded-xl">
+        <div className="mb-5 rounded-xl">
           <div>
             {getPostError ? (
               <ErrorGetData
@@ -97,7 +97,7 @@ export function Blog() {
                   <div
                     className="my-2 p-2 rounded-lg bg-white"
                     key={index}
-                    data-aos="zoom-in"
+                    // data-aos="zoom-in"
                   >
                     <div className="grid grid-cols-1 lg:grid-cols-2">
                       <div className="flex justify-center items-center col-span-1 border rounded-lg m-1 md:m-2">
@@ -106,7 +106,7 @@ export function Blog() {
                             'https://i.ibb.co/RDfWY1Y/pic-removebg-preview.png'
                           }
                           style={{
-                            height: '280px',
+                            height: '200px',
                             objectFit: 'cover',
                             width: '450px',
                           }}
@@ -169,21 +169,21 @@ export function Blog() {
                   </div>
                 ) : (
                   <div
-                    className="my-2 p-2 rounded-none sm:rounded-lg bg-white"
+                    className="my-2 p-2 rounded-lg bg-white"
                     key={index}
-                    data-aos="zoom-in"
+                    // data-aos="zoom-in"
                   >
                     <Link to={`/detail/${item.id}`}>
                       <div className="grid grid-cols-1 lg:grid-cols-2">
-                        <div className="flex justify-center items-center m-1 md:m-2 border rounded-lg">
+                        <div className="flex justify-center items-center m-1 md:m-2 rounded-lg">
                           <img
                             src={item.pic}
                             style={{
-                              height: '280px',
+                              height: '200px',
                               objectFit: 'cover',
                               width: '450px',
                             }}
-                            className="rounded-lg"
+                            className="rounded-lg border"
                           />
                         </div>
                         <div className="col-span-1 flex flex-col justify-center items-center m-1 md:m-2">

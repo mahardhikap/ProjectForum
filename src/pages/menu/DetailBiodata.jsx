@@ -18,7 +18,7 @@ export function DetailBiodata() {
     dispatch(getBiodata());
   }, []);
   return (
-    <section className="mx-auto w-full sm:w-11/12 lg:w-3/5 my-0 sm:my-5 bg-white rounded-none sm:rounded-lg">
+    <section className="mx-auto w-11/12 lg:w-3/5 my-5 bg-white rounded-lg">
       <div className="p-2">
         <div className="flex justify-end">
           <Link
@@ -115,7 +115,7 @@ export function DetailBiodata() {
                     <img
                       src={item.photo}
                       alt="portfolio-picture"
-                      className="max-h-36 w-full object-cover rounded-lg"
+                      className="max-h-50 w-full object-cover rounded-lg"
                     />
                   </div>
                   <div className="font-bold text-black">

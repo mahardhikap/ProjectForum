@@ -19,9 +19,9 @@ export function Home() {
   }, []);
 
   return (
-    <section className="w-full sm:w-11/12 lg:w-1/2 mx-auto container h-screen flex justify-center items-center">
+    <section className="w-11/12 lg:w-1/2 mx-auto container h-screen flex justify-center items-center">
       <div className="w-full">
-        <div className="p-2 rounded-none sm:rounded-xl bg-white flex items-center sm:my-5 w-full h-screen sm:h-auto">
+        <div className="px-2 py-5 rounded-xl bg-white flex items-center my-5 w-full">
           <div className="flex flex-col lg:flex-row items-center w-full">
             <div className="flex justify-center items-center w-full">
               <img
