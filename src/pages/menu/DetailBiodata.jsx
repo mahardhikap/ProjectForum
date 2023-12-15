@@ -110,12 +110,12 @@ export function DetailBiodata() {
           {data?.portfolio?.map((item, index) => {
             return (
               <Link to={`/detailporto/${item.id}`} key={index}>
-                <div className="border p-2 rounded-lg w-60 bg-gray-100">
+                <div className="border p-2 rounded-lg w-full sm:w-60 bg-gray-100">
                   <div className="flex items-center justify-center">
                     <img
                       src={item.photo}
                       alt="portfolio-picture"
-                      className="max-h-36"
+                      className="max-h-36 w-full object-cover rounded-lg"
                     />
                   </div>
                   <div className="font-bold text-black">
