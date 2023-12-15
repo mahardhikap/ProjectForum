@@ -50,12 +50,12 @@ export function ListPorto() {
             <MenuDashboard />
           </div>
           <div className="col-span-2">
-            <div className="bg-blue-100 p-2 rounded-lg mt-5 md:mt-0">
+            <div className="bg-gray-200 p-2 rounded-lg mt-5 md:mt-0">
               <div className="font-bold">LIST PORTFOLIO</div>
             </div>
             {data?.map((item, index) => {
               return (
-                <div className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white" key={index}>
+                <div className="my-2 p-2 rounded-lg bg-white" key={index}>
                   <div className="flex flex-row items-center gap-5">
                     <div
                       className="text-green-400 font-extrabold cursor-pointer text-2xl"
@@ -96,12 +96,12 @@ export function ListPorto() {
                           <div>
                             <div
                               dangerouslySetInnerHTML={{
-                                __html: item.about.slice(0, 100),
+                                __html: item.about.slice(0, 100) + '...',
                               }}
                             ></div>
                             {item.about.length > 100 ? (
-                              <span className="font-bold text-blue-300">
-                                read more
+                              <span className="font-medium text-blue-300">
+                                read more &rarr;
                               </span>
                             ) : (
                               ''

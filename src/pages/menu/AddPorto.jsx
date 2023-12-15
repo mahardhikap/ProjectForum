@@ -76,7 +76,7 @@ export function AddPorto(){
               <MenuDashboard/>
             </div>
             <div className="col-span-2">
-              <div className="bg-blue-100 p-2 rounded-lg mt-5 md:mt-0">
+              <div className="bg-gray-200 p-2 rounded-lg mt-5 md:mt-0">
                 <div className="font-bold">POST PORTFOLIO</div>
               </div>
               <form action="" onSubmit={postPorto}>

@@ -18,7 +18,7 @@ export function DetailBiodata() {
     dispatch(getBiodata());
   }, []);
   return (
-    <section className="mx-auto w-11/12 lg:w-3/5 my-5 bg-white shadow-[1px_1px_10px_rgba(0,0,0,0.1)] rounded-lg">
+    <section className="mx-auto w-11/12 lg:w-3/5 my-5 bg-white rounded-lg">
       <div className="p-2">
         <div className="flex justify-end">
           <Link
@@ -37,44 +37,67 @@ export function DetailBiodata() {
             />
             <div className="flex flex-row gap-2 my-5 flex-wrap">
               <div>
-                <a href={data?.biodata?.twitter} target="_blank">
+                <a
+                  href={data?.biodata?.twitter}
+                  target="_blank"
+                  className="text-gray-400 hover:text-gray-500"
+                >
                   <FontAwesomeIcon icon={faSquareXTwitter} size="2xl" />
                 </a>
               </div>
               <div>
-                <a href={data?.biodata?.facebook} target="_blank">
+                <a
+                  href={data?.biodata?.facebook}
+                  target="_blank"
+                  className="text-gray-400 hover:text-gray-500"
+                >
                   <FontAwesomeIcon icon={faSquareFacebook} size="2xl" />
                 </a>
               </div>
               <div>
-                <a href={data?.biodata?.instagram} target="_blank">
+                <a
+                  href={data?.biodata?.instagram}
+                  target="_blank"
+                  className="text-gray-400 hover:text-gray-500"
+                >
                   <FontAwesomeIcon icon={faSquareInstagram} size="2xl" />
                 </a>
               </div>
               <div>
-                <a href={data?.biodata?.linkedin} target="_blank">
+                <a
+                  href={data?.biodata?.linkedin}
+                  target="_blank"
+                  className="text-gray-400 hover:text-gray-500"
+                >
                   <FontAwesomeIcon icon={faLinkedin} size="2xl" />
                 </a>
               </div>
               <div>
-                <a href={data?.biodata?.other} target="_blank">
+                <a
+                  href={data?.biodata?.other}
+                  target="_blank"
+                  className="text-gray-400 hover:text-gray-500"
+                >
                   <FontAwesomeIcon icon={faSquareGithub} size="2xl" />
                 </a>
               </div>
             </div>
           </div>
           <div className="col-span-3 ps-0 lg:ps-2">
-            <div className="font-bold mb-2">Name:</div>
+            <div className="font-bold">Name</div>
             <div>{data?.biodata?.fullname}</div>
-            <div className="font-bold my-2">About</div>
+            <div className="font-bold">About</div>
             <div
               dangerouslySetInnerHTML={{ __html: data?.biodata?.about }}
             ></div>
-            <div className="font-bold my-2">Skill</div>
+            <div className="font-bold mb-2">Skill</div>
             <div className="w-full flex flex-row flex-wrap gap-3">
               {data?.biodata?.skill?.split(',').map((item, index) => {
                 return (
-                  <div className="bg-yellow-100 p-2 rounded-lg" key={index}>
+                  <div
+                    className="bg-gray-200 p-2 rounded-lg font-medium"
+                    key={index}
+                  >
                     {item}
                   </div>
                 );
@@ -82,12 +105,12 @@ export function DetailBiodata() {
             </div>
           </div>
         </div>
-        <div className="mt-5 font-bold my-2">Portfolio</div>
+        <div className="mt-5 font-bold mb-2">Portfolio</div>
         <div className="flex flex-row gap-2 flex-wrap">
           {data?.portfolio?.map((item, index) => {
             return (
               <Link to={`/detailporto/${item.id}`} key={index}>
-                <div className="border p-2 rounded-lg w-60">
+                <div className="border p-2 rounded-lg w-60 bg-gray-100">
                   <div className="flex items-center justify-center">
                     <img
                       src={item.photo}
@@ -102,11 +125,11 @@ export function DetailBiodata() {
                   <div>
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: item.about.slice(0, 100),
+                        __html: item.about.slice(0, 100) + '...',
                       }}
                     ></div>
                     {item.about.length > 100 ? (
-                      <span className="font-bold text-blue-300">read more</span>
+                      <span className="font-medium text-blue-300">read more &rarr;</span>
                     ) : (
                       ''
                     )}

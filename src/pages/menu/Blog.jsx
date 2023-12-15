@@ -65,7 +65,7 @@ export function Blog() {
 
   return (
     <section className="container mx-auto w-11/12 lg:w-3/5">
-      <div className="mt-5 rounded-xl shadow-[1px_1px_10px_rgba(0,0,0,0.1)] p-3 bg-white">
+      <div className="mt-5 rounded-xl p-3 bg-white">
         <div onClick={() => searchToggle()}>
           <TopNavbar />
         </div>
@@ -88,7 +88,7 @@ export function Blog() {
               getPost?.rows?.map((item, index) => {
                 return item.post_pass !== 'undefined' ? (
                   <div
-                    className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
+                    className="my-2 p-2 rounded-lg bg-white"
                     key={index}
                     data-aos="zoom-in"
                   >
@@ -162,7 +162,7 @@ export function Blog() {
                   </div>
                 ) : (
                   <div
-                    className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
+                    className="my-2 p-2 rounded-lg bg-white"
                     key={index}
                     data-aos="zoom-in"
                   >
@@ -192,12 +192,12 @@ export function Blog() {
                             <div>
                               <div
                                 dangerouslySetInnerHTML={{
-                                  __html: item.article.slice(0, 100),
+                                  __html: item.article.slice(0, 100) + '...',
                                 }}
                               ></div>
                               {item.article.length > 100 ? (
-                                <span className="font-bold text-blue-300">
-                                  read more
+                                <span className="font-medium text-blue-300">
+                                  read more &rarr;
                                 </span>
                               ) : (
                                 ''
@@ -238,14 +238,14 @@ export function Blog() {
             )}
             <div className="my-5 font-bold flex items-center justify-center">
               <button
-                className="rounded p-2 text-blue-100 hover:text-blue-300 border-0 me-3 text-3xl"
+                className="rounded p-2 text-gray-300 hover:text-gray-400 border-0 me-3 text-3xl"
                 onClick={() => goToPage(page - 1)}
               >
                 <FontAwesomeIcon icon={faCircleLeft} />
               </button>
               {getPost?.pages?.pageNow} From {getPost?.pages?.totalPage}
               <button
-                className="rounded p-2 text-blue-100 hover:text-blue-300 border-0 ms-3 text-3xl"
+                className="rounded p-2 text-gray-300 hover:text-gray-400 border-0 ms-3 text-3xl"
                 onClick={() => goToPage(page + 1)}
               >
                 <FontAwesomeIcon icon={faCircleRight} />

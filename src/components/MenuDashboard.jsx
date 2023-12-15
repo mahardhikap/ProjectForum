@@ -27,14 +27,14 @@ export function MenuDashboard() {
         Swal.fire('Logout success!', '', 'success').then(() => {
           localStorage.clear();
           dispatch(cleanLogin());
-          navigate('/blog');
+          navigate('/home');
         });
       }
     });
   };
   return (
     <div className='sticky top-5'>
-      <div className="bg-white shadow-[1px_1px_10px_rgba(0,0,0,0.1)] p-2 rounded-lg cursor-pointer">
+      <div className="bg-white p-2 rounded-lg cursor-pointer">
         <div className="flex items-center justify-center">
           <img
             src={localStorage.getItem('photo_')}
@@ -50,8 +50,8 @@ export function MenuDashboard() {
         <Link to={'/dashboard'}>
           <div
             className={`font-medium my-2 ${
-              activeMenu === '/dashboard' ? 'bg-blue-300' : 'bg-blue-100'
-            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-blue-300`}
+              activeMenu === '/dashboard' ? 'bg-gray-300' : 'bg-gray-100'
+            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-gray-300`}
           >
             Dashboard
           </div>
@@ -59,8 +59,8 @@ export function MenuDashboard() {
         <Link to={'/add'}>
           <div
             className={`font-medium my-2 ${
-              activeMenu === '/add' ? 'bg-blue-300' : 'bg-blue-100'
-            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-blue-300`}
+              activeMenu === '/add' ? 'bg-gray-300' : 'bg-gray-100'
+            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-gray-300`}
           >
             Post Article
           </div>
@@ -68,8 +68,8 @@ export function MenuDashboard() {
         <Link to={`/profile/${localStorage.getItem('id_')}`}>
           <div
             className={`font-medium my-2 ${
-              activeMenu === `/profile/${localStorage.getItem('id_')}` ? 'bg-blue-300' : 'bg-blue-100'
-            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-blue-300`}
+              activeMenu === `/profile/${localStorage.getItem('id_')}` ? 'bg-gray-300' : 'bg-gray-100'
+            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-gray-300`}
           >
             Edit Profile
           </div>
@@ -77,8 +77,8 @@ export function MenuDashboard() {
         <Link to={`/updatebiodata`} className={`${localStorage.getItem('roles_') !== 'admin' ? 'hidden' : 'block'}`}>
           <div
             className={`font-medium my-2 ${
-              activeMenu === `/updatebiodata` ? 'bg-blue-300' : 'bg-blue-100'
-            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-blue-300`}
+              activeMenu === `/updatebiodata` ? 'bg-gray-300' : 'bg-gray-100'
+            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-gray-300`}
           >
             Biodata
           </div>
@@ -86,8 +86,8 @@ export function MenuDashboard() {
         <Link to={`/addporto`} className={`${localStorage.getItem('roles_') !== 'admin' ? 'hidden' : 'block'}`}>
           <div
             className={`font-medium my-2 ${
-              activeMenu === `/addporto` ? 'bg-blue-300' : 'bg-blue-100'
-            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-blue-300`}
+              activeMenu === `/addporto` ? 'bg-gray-300' : 'bg-gray-100'
+            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-gray-300`}
           >
             Post Portfolio
           </div>
@@ -95,14 +95,14 @@ export function MenuDashboard() {
         <Link to={`/listporto`} className={`${localStorage.getItem('roles_') !== 'admin' ? 'hidden' : 'block'}`}>
           <div
             className={`font-medium my-2 ${
-              activeMenu === `/listporto` ? 'bg-blue-300' : 'bg-blue-100'
-            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-blue-300`}
+              activeMenu === `/listporto` ? 'bg-gray-300' : 'bg-gray-100'
+            } rounded-md px-2 py-2 my-2 text-black w-full hover:bg-gray-300`}
           >
             List Portfolio
           </div>
         </Link>
         <div
-          className="font-medium my-2 bg-blue-100 hover:bg-red-500 rounded-md px-2 py-2 my-2 text-black"
+          className="font-medium my-2 bg-gray-100 hover:bg-red-500 rounded-md px-2 py-2 my-2 text-black"
           onClick={() => handleLogOut()}
         >
           Logout

@@ -86,13 +86,13 @@ export function Dashboard() {
             <MenuDashboard />
           </div>
           <div className="col-span-2">
-            <div className="bg-blue-100 p-2 rounded-lg mt-5 md:mt-0">
+            <div className="bg-gray-200 p-2 rounded-lg mt-5 md:mt-0">
               <div className="font-bold">DASHBOARD</div>
             </div>
             {getPost?.rows?.map((item, index) => {
               return item.post_pass !== 'undefined' ? (
                 <div
-                  className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
+                  className="my-2 p-2 rounded-lg bg-white"
                   key={index}
                 >
                   <div className="flex flex-row items-center gap-5">
@@ -181,7 +181,7 @@ export function Dashboard() {
                 </div>
               ) : (
                 <div
-                  className="my-2 p-2 rounded-lg shadow-[1px_1px_10px_rgba(0,0,0,0.1)] bg-white"
+                  className="my-2 p-2 rounded-lg bg-white"
                   key={index}
                 >
                   <div className="flex flex-row items-center gap-5">
@@ -224,12 +224,12 @@ export function Dashboard() {
                           <div>
                             <div
                               dangerouslySetInnerHTML={{
-                                __html: item.article.slice(0, 100),
+                                __html: item.article.slice(0, 100) + '...',
                               }}
                             ></div>
                             {item.article.length > 100 ? (
-                              <span className="font-bold text-blue-300">
-                                read more
+                              <span className="font-medium text-blue-300">
+                                read more &rarr;
                               </span>
                             ) : (
                               ''
@@ -270,14 +270,14 @@ export function Dashboard() {
             })}
             <div className="my-5 font-bold flex items-center justify-center">
               <button
-                className="rounded p-2 text-blue-100 hover:text-blue-300 border-0 me-3 text-3xl"
+                className="rounded p-2 text-gray-300 hover:text-gray-400 border-0 me-3 text-3xl"
                 onClick={() => goToPage(page - 1)}
               >
                 <FontAwesomeIcon icon={faCircleLeft} />
               </button>
               {getPost?.pages?.pageNow} From {getPost?.pages?.totalPage}
               <button
-                className="rounded p-2 text-blue-100 hover:text-blue-300 border-0 ms-3 text-3xl"
+                className="rounded p-2 text-gray-300 hover:text-gray-400 border-0 ms-3 text-3xl"
                 onClick={() => goToPage(page + 1)}
               >
                 <FontAwesomeIcon icon={faCircleRight} />

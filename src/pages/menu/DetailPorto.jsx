@@ -15,7 +15,7 @@ export function DetailPorto() {
   return (
     <section>
       <div className="w-11/12 lg:w-3/5 container mx-auto">
-        <div className="shadow-[1px_1px_10px_rgba(0,0,0,0.1)] p-2 rounded-xl bg-white my-5">
+        <div className="p-2 rounded-xl bg-white my-5">
           <div className="flex justify-end pb-5 ">
             <Link
               to={-1}
@@ -32,10 +32,10 @@ export function DetailPorto() {
               alt="Article Cover"
             />
           </div>
-          <div className="w-2/3 justify-center mx-auto flex flex-row flex-wrap gap-3 my-5">
+          <div className="justify-center mx-auto flex flex-row flex-wrap gap-3 my-5">
             {data?.stack?.split(',').map((item, index) => {
               return (
-                <div key={index} className="p-2 bg-yellow-100 rounded-lg">
+                <div key={index} className="p-2 bg-yellow-100 rounded-lg text-xs">
                   {item}
                 </div>
               );
