@@ -18,7 +18,7 @@ export function DetailBiodata() {
     dispatch(getBiodata());
   }, []);
   return (
-    <section className="mx-auto w-11/12 lg:w-3/5 my-5 bg-white rounded-lg">
+    <section className="mx-auto w-full sm:w-11/12 lg:w-3/5 my-0 sm:my-5 bg-white rounded-none sm:rounded-lg">
       <div className="p-2">
         <div className="flex justify-end">
           <Link

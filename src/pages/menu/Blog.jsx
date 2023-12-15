@@ -64,8 +64,8 @@ export function Blog() {
   }, [page]);
 
   return (
-    <section className="container mx-auto w-11/12 lg:w-3/5">
-      <div className="mt-5 rounded-xl p-3 bg-white flex justify-between">
+    <section className="container mx-auto w-full sm:w-11/12 lg:w-3/5">
+      <div className="mt-0 sm:mt-5 rounded-none sm:rounded-xl p-3 bg-white flex justify-between">
         <div className='w-full'>
           <SearchBox
             onchanges={onChangeSearch}
@@ -84,7 +84,7 @@ export function Blog() {
         </div>
       </div>
       <div>
-        <div className="mb-5 rounded-xl">
+        <div className="mb-5 rounded-none sm:rounded-xl">
           <div>
             {getPostError ? (
               <ErrorGetData
@@ -169,7 +169,7 @@ export function Blog() {
                   </div>
                 ) : (
                   <div
-                    className="my-2 p-2 rounded-lg bg-white"
+                    className="my-2 p-2 rounded-none sm:rounded-lg bg-white"
                     key={index}
                     data-aos="zoom-in"
                   >
@@ -243,7 +243,7 @@ export function Blog() {
                 );
               })
             )}
-            <div className="my-5 font-bold flex items-center justify-center">
+            <div className="my-0 sm:my-5 font-bold flex items-center justify-center">
               <button
                 className="rounded p-2 text-gray-300 hover:text-gray-400 border-0 me-3 text-3xl"
                 onClick={() => goToPage(page - 1)}
