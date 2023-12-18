@@ -35,11 +35,11 @@ export function LoginUser() {
   }, [data, isError, errorMessage]);
 
   return (
-    <section className="h-screen flex flex-col justify-center items-center container mx-auto bg-gray-50">
+    <section className="h-screen flex flex-col justify-center items-center container mx-auto">
       <div className="z-10 w-full flex justify-center items-center flex-col">
         <h1 className="text-2xl mb-4 font-bold">SIGN IN</h1>
         <form
-          className="w-full sm:w-11/12 sm:w-3/5 lg:w-1/3 bg-white rounded-none sm:rounded-lg p-3"
+          className="w-11/12 sm:w-3/5 lg:w-1/3 bg-white rounded-lg p-3"
           onSubmit={postData}
         >
           <div>
