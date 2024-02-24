@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserPost, deleteArticle } from '../../redux/action/menu';
 import Swal from 'sweetalert2';
@@ -16,10 +16,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [sortby, setSortby] = useState('created_at');
-  const [sort, setSort] = useState('DESC');
+  const sortby = 'created_at';
+  const sort = 'DESC';
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(5);
+  const limit = 5;
   const { data: getPost } = useSelector((state) => state.getUserPost);
   const [inputPassword, setInputPassword] = useState('');
 
@@ -72,6 +72,7 @@ export function Dashboard() {
   useEffect(() => {
     dispatch(getUserPost(sortby, sort, page, limit));
     window.scrollTo(0, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   return (
@@ -91,10 +92,7 @@ export function Dashboard() {
             </div>
             {getPost?.rows?.map((item, index) => {
               return item.post_pass !== 'undefined' ? (
-                <div
-                  className="my-2 p-2 rounded-lg bg-white"
-                  key={index}
-                >
+                <div className="my-2 p-2 rounded-lg bg-white" key={index}>
                   <div className="flex flex-row items-center gap-5">
                     <div
                       className="text-green-400 font-extrabold cursor-pointer text-2xl"
@@ -110,15 +108,15 @@ export function Dashboard() {
                     </div>
                   </div>
                   <div className="grid grid-cols-1 lg:grid-cols-2">
-                    <div className="flex justify-center items-center col-span-1 border rounded-lg m-1 md:m-2">
+                    <div className="flex justify-center items-center col-span-1 rounded-lg m-1 md:m-2 border p-1 bg-slate-50">
                       <img
                         src={
                           'https://i.ibb.co/RDfWY1Y/pic-removebg-preview.png'
                         }
                         style={{
-                          height: '280px',
+                          height: '250px',
                           objectFit: 'cover',
-                          width: '450px',
+                          width: '350px',
                         }}
                         className="rounded-lg"
                       />
@@ -180,10 +178,7 @@ export function Dashboard() {
                   </div>
                 </div>
               ) : (
-                <div
-                  className="my-2 p-2 rounded-lg bg-white"
-                  key={index}
-                >
+                <div className="my-2 p-2 rounded-lg bg-white" key={index}>
                   <div className="flex flex-row items-center gap-5">
                     <div
                       className="text-green-400 font-extrabold cursor-pointer text-2xl"
@@ -200,13 +195,13 @@ export function Dashboard() {
                   </div>
                   <Link to={`/detail/${item.id}`}>
                     <div className="grid grid-cols-1 lg:grid-cols-2">
-                      <div className="flex justify-center items-center m-1 md:m-2 border rounded-lg">
+                      <div className="flex justify-center items-center m-1 md:m-2 rounded-lg border p-1 bg-slate-50">
                         <img
                           src={item.pic}
                           style={{
-                            height: '280px',
+                            height: '250px',
                             objectFit: 'cover',
-                            width: '450px',
+                            width: '350px',
                           }}
                           className="rounded-lg"
                         />
@@ -236,17 +231,17 @@ export function Dashboard() {
                             )}
                           </div>
                           <div className="flex flex-row items-center gap-3 mt-5">
-                              <div>
-                                <img
-                                  src={item.photo}
-                                  alt="photo-profile"
-                                  className="rounded-full max-w-[30px] max-h-[30px]"
-                                />
-                              </div>
-                              <div className="font-bold text-black">
-                                {item.username}
-                              </div>
+                            <div>
+                              <img
+                                src={item.photo}
+                                alt="photo-profile"
+                                className="rounded-full max-w-[30px] max-h-[30px]"
+                              />
                             </div>
+                            <div className="font-bold text-black">
+                              {item.username}
+                            </div>
+                          </div>
                           <p>
                             {`${new Intl.DateTimeFormat('id-ID', {
                               weekday: 'long',

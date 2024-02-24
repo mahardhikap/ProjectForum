@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPost } from '../../redux/action/menu';
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,18 +9,18 @@ import { faRectangleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { SearchBox } from '../../components/SearchBox';
 import { ErrorGetData } from '../../components/ErrorGetData';
-import AOS from 'aos';
+// import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 export function Blog() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [searchby, setSearchby] = useState('title');
+  const searchby = 'title';
   const [search, setSearch] = useState('');
-  const [sortby, setSortby] = useState('created_at');
-  const [sort, setSort] = useState('DESC');
+  const sortby = 'created_at';
+  const sort = 'DESC';
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(5);
+  const limit = 5;
   const [inputPassword, setInputPassword] = useState('');
   const { data: getPost, isError: getPostError } = useSelector(
     (state) => state.getAllPost
@@ -61,12 +61,13 @@ export function Blog() {
     // AOS.init();
     dispatch(getAllPost(searchby, search, sortby, sort, page, limit));
     window.scrollTo(0, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   return (
     <section className="container mx-auto w-11/12 lg:w-3/5">
       <div className="mt-5 rounded-xl p-3 bg-white flex justify-between">
-        <div className='w-full'>
+        <div className="w-full">
           <SearchBox
             onchanges={onChangeSearch}
             values={search}
@@ -100,15 +101,15 @@ export function Blog() {
                     // data-aos="zoom-in"
                   >
                     <div className="grid grid-cols-1 lg:grid-cols-2">
-                      <div className="flex justify-center items-center col-span-1 border rounded-lg m-1 md:m-2">
+                      <div className="flex justify-center items-center col-span-1 border rounded-lg m-1 md:m-2 p-1 bg-slate-50">
                         <img
                           src={
                             'https://i.ibb.co/RDfWY1Y/pic-removebg-preview.png'
                           }
                           style={{
-                            height: '200px',
+                            height: '250px',
                             objectFit: 'cover',
-                            width: '450px',
+                            width: '350px',
                           }}
                           className="rounded-lg"
                         />
@@ -175,15 +176,15 @@ export function Blog() {
                   >
                     <Link to={`/detail/${item.id}`}>
                       <div className="grid grid-cols-1 lg:grid-cols-2">
-                        <div className="flex justify-center items-center m-1 md:m-2 rounded-lg">
+                        <div className="flex justify-center items-center m-1 md:m-2 rounded-lg border p-1 bg-slate-50">
                           <img
                             src={item.pic}
                             style={{
-                              height: '200px',
+                              height: '250px',
                               objectFit: 'cover',
-                              width: '450px',
+                              width: '350px',
                             }}
-                            className="rounded-lg border"
+                            className="rounded-lg"
                           />
                         </div>
                         <div className="col-span-1 flex flex-col justify-center items-center m-1 md:m-2">

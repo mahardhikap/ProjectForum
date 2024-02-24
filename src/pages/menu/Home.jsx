@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBiodata } from '../../redux/action/menu';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ export function Home() {
   const { data } = useSelector((state) => state.getBiodata);
   useEffect(() => {
     dispatch(getBiodata());
-  }, []);
+  }, [dispatch]);
 
   return (
     <section className="w-11/12 lg:w-1/2 mx-auto container h-screen flex justify-center items-center">
@@ -32,7 +32,7 @@ export function Home() {
             </div>
             <div className="flex flex-col gap-1 ms-0 mt-3 lg:ms-5 lg:mt-0">
               <div>
-                Hello, I'm{' '}
+                Hello, I&apos;m{' '}
                 <span className="px-1 font-medium rounded-lg">
                   {data?.biodata?.fullname}
                 </span>
@@ -61,6 +61,7 @@ export function Home() {
                     href={data?.biodata?.twitter}
                     target="_blank"
                     className="text-gray-400 hover:text-gray-500"
+                    rel="noreferrer"
                   >
                     <FontAwesomeIcon icon={faSquareXTwitter} size="2xl" />
                   </a>
@@ -70,6 +71,7 @@ export function Home() {
                     href={data?.biodata?.facebook}
                     target="_blank"
                     className="text-gray-400 hover:text-gray-500"
+                    rel="noreferrer"
                   >
                     <FontAwesomeIcon icon={faSquareFacebook} size="2xl" />
                   </a>
@@ -79,6 +81,7 @@ export function Home() {
                     href={data?.biodata?.instagram}
                     target="_blank"
                     className="text-gray-400 hover:text-gray-500"
+                    rel="noreferrer"
                   >
                     <FontAwesomeIcon icon={faSquareInstagram} size="2xl" />
                   </a>
@@ -88,6 +91,7 @@ export function Home() {
                     href={data?.biodata?.linkedin}
                     target="_blank"
                     className="text-gray-400 hover:text-gray-500"
+                    rel="noreferrer"
                   >
                     <FontAwesomeIcon icon={faLinkedin} size="2xl" />
                   </a>
@@ -97,6 +101,7 @@ export function Home() {
                     href={data?.biodata?.other}
                     target="_blank"
                     className="text-gray-400 hover:text-gray-500"
+                    rel="noreferrer"
                   >
                     <FontAwesomeIcon icon={faSquareGithub} size="2xl" />
                   </a>

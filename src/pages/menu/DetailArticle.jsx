@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getDetailArticle } from '../../redux/action/menu';
@@ -14,7 +14,8 @@ export function DetailArticle() {
 
   useEffect(() => {
     dispatch(getDetailArticle(id));
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
@@ -55,11 +56,11 @@ export function DetailArticle() {
                   ? getArticle?.pic
                   : 'https://i.ibb.co/RDfWY1Y/pic-removebg-preview.png'
               }
-              className="w-[400px] h-[250px] object-cover rounded-lg border"
+              className="w-[800px] h-[350px] object-cover rounded-lg border p-1 bg-slate-50"
               alt="Article Cover"
             />
           </div>
-          <div className='mt-3 mb-14'>
+          <div className="mt-3 mb-14">
             <div className="flex flex-row items-center justify-center gap-3 font-bold">
               <img
                 src={getArticle?.photo}
