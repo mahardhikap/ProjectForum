@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -122,9 +122,6 @@ export function AddArticle() {
                 <CKEditor
                     editor={ ClassicEditor }
                     data={editorContent}
-                    onReady={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                    } }
                     onChange={ ( event, editor ) => {
                         const data = editor.getData();
                         setEditorContent(data)
@@ -142,6 +139,8 @@ export function AddArticle() {
                           "blockQuote",
                           "insertTable",
                           "|",
+                          'mediaEmbed',
+                          "videoInsert",
                           "undo",
                           "redo"
                         ],

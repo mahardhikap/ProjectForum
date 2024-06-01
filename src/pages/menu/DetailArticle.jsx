@@ -65,7 +65,7 @@ export function DetailArticle() {
               <img
                 src={getArticle?.photo}
                 alt="photo-profile"
-                className="rounded-full max-w-[30px] max-h-[30px]"
+                className="rounded-full w-[30px] h-[30px] border object-cover"
               />{' '}
               {getArticle?.username}
             </div>
@@ -88,8 +88,8 @@ export function DetailArticle() {
           <div>
             {isPasswordMatch || getArticle?.post_pass === 'undefined' ? (
               <div
-                dangerouslySetInnerHTML={{ __html: getArticle?.article }}
-              ></div>
+              dangerouslySetInnerHTML={{ __html: getArticle?.article.replace('\\', '') }}
+            ></div>
             ) : (
               'Password does not match.'
             )}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBiodata } from '../../redux/action/menu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -33,14 +33,14 @@ export function DetailBiodata() {
             <img
               src={data?.biodata?.photo}
               alt=""
-              className="rounded-lg border w-40 h-40 object-cover"
+              className="rounded-lg border w-56 lg:w-full h-56 object-cover"
             />
             <div className="flex flex-row gap-2 my-5 flex-wrap">
               <div>
                 <a
                   href={data?.biodata?.twitter}
                   target="_blank"
-                  className="text-gray-400 hover:text-gray-500"
+                  className="text-gray-300 hover:text-gray-500" rel="noreferrer"
                 >
                   <FontAwesomeIcon icon={faSquareXTwitter} size="2xl" />
                 </a>
@@ -49,7 +49,7 @@ export function DetailBiodata() {
                 <a
                   href={data?.biodata?.facebook}
                   target="_blank"
-                  className="text-gray-400 hover:text-gray-500"
+                  className="text-gray-300 hover:text-gray-500" rel="noreferrer"
                 >
                   <FontAwesomeIcon icon={faSquareFacebook} size="2xl" />
                 </a>
@@ -58,7 +58,7 @@ export function DetailBiodata() {
                 <a
                   href={data?.biodata?.instagram}
                   target="_blank"
-                  className="text-gray-400 hover:text-gray-500"
+                  className="text-gray-300 hover:text-gray-500" rel="noreferrer"
                 >
                   <FontAwesomeIcon icon={faSquareInstagram} size="2xl" />
                 </a>
@@ -67,7 +67,7 @@ export function DetailBiodata() {
                 <a
                   href={data?.biodata?.linkedin}
                   target="_blank"
-                  className="text-gray-400 hover:text-gray-500"
+                  className="text-gray-300 hover:text-gray-500" rel="noreferrer"
                 >
                   <FontAwesomeIcon icon={faLinkedin} size="2xl" />
                 </a>
@@ -76,7 +76,7 @@ export function DetailBiodata() {
                 <a
                   href={data?.biodata?.other}
                   target="_blank"
-                  className="text-gray-400 hover:text-gray-500"
+                  className="text-gray-300 hover:text-gray-500" rel="noreferrer"
                 >
                   <FontAwesomeIcon icon={faSquareGithub} size="2xl" />
                 </a>
@@ -95,7 +95,7 @@ export function DetailBiodata() {
               {data?.biodata?.skill?.split(',').map((item, index) => {
                 return (
                   <div
-                    className="bg-gray-200 p-2 rounded-lg font-medium"
+                    className="bg-[#f3f4f6] p-2 text-xs text-black rounded-lg font-medium cursor-default"
                     key={index}
                   >
                     {item}
@@ -106,16 +106,16 @@ export function DetailBiodata() {
           </div>
         </div>
         <div className="mt-5 font-bold mb-2">Portfolio</div>
-        <div className="flex flex-row gap-2 flex-wrap">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
           {data?.portfolio?.map((item, index) => {
             return (
               <Link to={`/detailporto/${item.id}`} key={index}>
-                <div className="border p-2 rounded-lg w-full sm:w-60 bg-gray-100">
+                <div className="border shadow p-2 rounded-lg w-full h-[310px] hover:bg-blue-50">
                   <div className="flex items-center justify-center">
                     <img
                       src={item.photo}
                       alt="portfolio-picture"
-                      className="max-h-50 w-full object-cover rounded-lg"
+                      className="h-36 w-full object-cover rounded-lg border"
                     />
                   </div>
                   <div className="font-bold text-black">

@@ -118,7 +118,7 @@ export function Home() {
                   className="cursor-pointer font-medium text-blue-300 hover:text-blue-400"
                   onClick={() => navigate('/biodata')}
                 >
-                  my self &rarr;
+                  my biodata &rarr;
                 </div>
               </div>
             </div>
