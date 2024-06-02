@@ -148,6 +148,26 @@ export function AddArticle() {
                       mediaEmbed: {
                         previewsInData: true,
                       },
+                      link: {
+                        decorators: {
+                          toggleDownloadable: {
+                            mode: "manual",
+                            label: "Downloadable",
+                            attributes: {
+                              download: "file",
+                            },
+                          },
+                          openInNewTab: {
+                            mode: "manual",
+                            label: "Open in a new tab",
+                            defaultValue: true,
+                            attributes: {
+                              target: "_blank",
+                              rel: "noopener noreferrer",
+                            },
+                          },
+                        },
+                      },
                     }}
                 />
               </div>
