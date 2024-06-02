@@ -85,7 +85,7 @@ export function DetailBiodata() {
           </div>
           <div className="col-span-3 ps-0 lg:ps-2">
             <div className="font-bold">Name</div>
-            <div>{data?.biodata?.fullname}</div>
+            <p>{data?.biodata?.fullname}</p>
             <div className="font-bold">About</div>
             <div
               dangerouslySetInnerHTML={{ __html: data?.biodata?.about }}
