@@ -87,7 +87,7 @@ export function DetailArticle() {
           </div>
           <div>
             {isPasswordMatch || getArticle?.post_pass === 'undefined' ? (
-              <div
+              <div className='break-words'
               dangerouslySetInnerHTML={{ __html: getArticle?.article}}
             ></div>
             ) : (
