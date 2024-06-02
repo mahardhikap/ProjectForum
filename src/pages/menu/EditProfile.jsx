@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserByToken, editProfile, cleanEditProfile } from "../../redux/action/user";
 import Swal from "sweetalert2";
@@ -7,11 +6,10 @@ import { MenuDashboard } from "../../components/MenuDashboard";
 
 
 export function EditProfile() {
-const navigate = useNavigate()
 const dispatch = useDispatch()
 const [photo, setPhoto] = useState(null);
 const {data:userData} = useSelector(state => state.getUserByToken)
-const {data:editData, isError:editError, isLoading:editLoading} = useSelector(state => state.editProfile)
+const {data:editData, isError:editError} = useSelector(state => state.editProfile)
 const [inputUser, setInputUser] = useState({
     username:'',
     password:'',

@@ -88,7 +88,7 @@ export function DetailArticle() {
           <div>
             {isPasswordMatch || getArticle?.post_pass === 'undefined' ? (
               <div
-              dangerouslySetInnerHTML={{ __html: getArticle?.article.replace('\\', '') }}
+              dangerouslySetInnerHTML={{ __html: getArticle?.article}}
             ></div>
             ) : (
               'Password does not match.'

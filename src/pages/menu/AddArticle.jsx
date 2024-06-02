@@ -145,6 +145,9 @@ export function AddArticle() {
                           "redo"
                         ],
                       },
+                      mediaEmbed: {
+                        previewsInData: true,
+                      },
                     }}
                 />
               </div>

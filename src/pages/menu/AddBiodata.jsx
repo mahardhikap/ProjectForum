@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from "react-router-dom"
 import { MenuDashboard } from "../../components/MenuDashboard"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -8,7 +7,6 @@ import { addBiodata, cleanAddBiodata, getBiodata } from '../../redux/action/menu
 import Swal from 'sweetalert2';
 
 export function AddBiodata(){
-    const navigate = useNavigate()
     const dispatch = useDispatch()
     
     const [image, setImage] = useState(null);
@@ -141,9 +139,6 @@ export function AddBiodata(){
                   <CKEditor
                     editor={ ClassicEditor }
                     data={editorContent || dataBio?.biodata?.about}
-                    onReady={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                    } }
                     onChange={ ( event, editor ) => {
                         const data = editor.getData();
                         setEditorContent(data)
