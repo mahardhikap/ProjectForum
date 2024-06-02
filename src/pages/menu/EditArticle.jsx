@@ -159,7 +159,7 @@ export function EditArticle() {
                 </label>
                 <CKEditor
                   editor={ClassicEditor}
-                  data={editorContent}
+                  data={inputArticle?.article}
                   onChange={(event, editor) => {
                     const data = editor.getData();
                     setEditorContent(data);

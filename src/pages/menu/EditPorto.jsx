@@ -150,7 +150,7 @@ export function EditPorto(){
                   </label>
                   <CKEditor
                     editor={ ClassicEditor }
-                    data={inputPorto.about}
+                    data={inputPorto?.about}
                     onChange={ ( event, editor ) => {
                         const data = editor.getData();
                         setEditorContent(data)
