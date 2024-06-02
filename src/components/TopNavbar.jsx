@@ -1,8 +1,7 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRectangleXmark } from '@fortawesome/free-solid-svg-icons';
 export function TopNavbar() {
-  const navigate = useNavigate();
   return (
     <div className="flex flex-row items-center justify-end font-bold mb-2">
       <Link
